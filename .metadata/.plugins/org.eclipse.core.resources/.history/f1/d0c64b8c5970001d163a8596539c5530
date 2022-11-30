@@ -1,0 +1,19 @@
+package curso_programacao;
+
+import java.util.Locale;;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Locale.setDefault(Locale.US);
+		
+		String nome = "Maria";
+		byte idade = 20;
+		double renda = 4500.0;
+		
+		System.out.printf("%s tem %d e ganha %.2f reais", nome, idade, renda);
+		
+	}
+
+}
