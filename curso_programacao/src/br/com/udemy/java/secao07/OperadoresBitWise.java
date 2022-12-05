@@ -1,4 +1,4 @@
-package br.udemy.java.secao07;
+package br.com.udemy.java.secao07;
 
 import java.util.Scanner;
 
