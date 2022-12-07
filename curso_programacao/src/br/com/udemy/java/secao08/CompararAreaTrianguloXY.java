@@ -2,6 +2,7 @@ package br.com.udemy.java.secao08;
 
 import java.util.Locale;
 import java.util.Scanner;
+import br.com.udemy.java.secao08.entities.Triangle;
 
 public class CompararAreaTrianguloXY {
 
@@ -16,21 +17,24 @@ public class CompararAreaTrianguloXY {
 		
 		Scanner scan = new Scanner(System.in);
 		
+		Triangle trianguloX = new Triangle();
+		Triangle trianguloY = new Triangle();
+		
 		System.out.println("Vamos calcular a area de dois triangulos e descobrir qual eh o maior?");
 		
 		System.out.print("Digite a medida dos três lados do primeiro triangulo, vamos chamar ele de X: ");		
-		double a = scan.nextDouble(); 
-		double b = scan.nextDouble();
-		double c = scan.nextDouble();		
-		double p = (a + b + c) / 2.0f;
-		double areaX = Math.sqrt( p * (p-a) * (p-b) * (p-c) );		
+		trianguloX.a = scan.nextDouble(); 
+		trianguloX.b = scan.nextDouble();
+		trianguloX.c = scan.nextDouble();		
+		double p = (trianguloX.a + trianguloX.b + trianguloX.c) / 2.0f;
+		double areaX = Math.sqrt( p * ( p - trianguloX.a) * ( p - trianguloX.b) * ( p - trianguloX.c) );		
 
 		System.out.print("Digite a medida dos três lados do segundo triangulo, vamos chamar ele de Y: ");		
-		a = scan.nextDouble(); 
-		b = scan.nextDouble();
-		c = scan.nextDouble();		
-		p = (a + b + c) / 2.0f;
-		double areaY = Math.sqrt( p * (p-a) * (p-b) * (p-c) );		
+		trianguloY.a = scan.nextDouble(); 
+		trianguloY.b = scan.nextDouble();
+		trianguloY.c = scan.nextDouble();		
+		p = (trianguloY.a + trianguloY.b + trianguloY.c) / 2.0f;
+		double areaY = Math.sqrt( p * ( p - trianguloY.a) * ( p - trianguloY.b) * ( p - trianguloY.c) );		
 		
 		if ( areaX >  areaY ) {
 			System.out.println("A area do triangulo X eh Maior!");
