@@ -2,7 +2,7 @@ package br.com.udemy.java.secao08;
 
 import java.util.Locale;
 import java.util.Scanner;
-import br.com.udemy.java.secao08.util.Calculator;
+//import br.com.udemy.java.secao08.util.Calculator;
 import br.com.udemy.java.secao08.util.CalculatorStatic;
 
 public class CalculoCircunferencia {

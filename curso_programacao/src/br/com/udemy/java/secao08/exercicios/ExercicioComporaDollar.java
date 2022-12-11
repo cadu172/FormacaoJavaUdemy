@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import br.com.udemy.java.secao08.util.CurrencyConverter;
 
-public class ExercicioComporaDollar {
+public class ExercicioCompraeDollar {
 
 	public static void main(String[] args) {
 
