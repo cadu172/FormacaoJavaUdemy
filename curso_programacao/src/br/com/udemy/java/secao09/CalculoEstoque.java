@@ -20,7 +20,7 @@ public class CalculoEstoque {
 		double price = scan.nextDouble();
 		
 		System.out.print("Quantity in stock: ");
-		int quantity = scan.nextInt();
+		//int quantity = scan.nextInt();
 		
 		
 		//Product product = new Product(name, price, quantity);
