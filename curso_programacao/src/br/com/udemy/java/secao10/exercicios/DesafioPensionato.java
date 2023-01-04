@@ -67,7 +67,7 @@ public class DesafioPensionato {
 		for(int i=0;i<quartos.length;i++) {
 						
 			if(! (quartos[i]==null) ) {
-				System.out.println(( i + 1 ) + " : " + quartos[i].getNome() + ", " + quartos[i].getEmail());
+				System.out.println(( i + 1 ) + " : " + quartos[i].toString());
 			};
 
 		}

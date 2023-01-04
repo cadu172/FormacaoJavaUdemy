@@ -44,4 +44,8 @@ public class Pessoa {
 		return altura;
 	}
 	
+    public String toString() {
+    	return this.getNome() + ", " + this.getEmail();
+    }
+	
 }
