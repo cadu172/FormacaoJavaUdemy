@@ -50,7 +50,7 @@ public class DesafioPensionato {
 						break;
 					}
 					else {
-						System.out.println("Quarto selecionado já está ocupado, digite 1 para continuar ou 9 para ir para o priximo aluno");
+						System.out.println("Quarto selecionado ja esta ocupado,\ndigite 1 para selecionar outro quarto ou 9 para ir para o priximo aluno");
 						int opcao = scan.nextInt();
 						if ( opcao==9  ) {
 							break;
@@ -65,18 +65,11 @@ public class DesafioPensionato {
 		System.out.println("---- Relatorio de ocupacao de quartos -----\n");
 		
 		for(int i=0;i<quartos.length;i++) {
-			System.out.println("Quarto ["+ (i+1) +"]\n");
-			
-			if(quartos[i]==null) {
-				System.out.println("Quarto VAZIO");
-			}
-			else {
-				
-				System.out.println("Nome " + quartos[i].getNome());
-				System.out.println("Email " + quartos[i].getEmail());
+						
+			if(! (quartos[i]==null) ) {
+				System.out.println(( i + 1 ) + " : " + quartos[i].getNome() + ", " + quartos[i].getEmail());
 			};
-			
-			System.out.println("-----------------------------------\n");
+
 		}
 		
 		scan.close();
