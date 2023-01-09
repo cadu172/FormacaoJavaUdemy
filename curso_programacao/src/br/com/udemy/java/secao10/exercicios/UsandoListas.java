@@ -1,9 +1,7 @@
 package br.com.udemy.java.secao10.exercicios;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class UsandoListas {

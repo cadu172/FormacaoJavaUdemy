@@ -6,7 +6,7 @@ public class Pessoa {
 	private int idade;
 	private float altura;
 	private String email;
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -47,5 +47,5 @@ public class Pessoa {
     public String toString() {
     	return this.getNome() + ", " + this.getEmail();
     }
-	
+
 }
