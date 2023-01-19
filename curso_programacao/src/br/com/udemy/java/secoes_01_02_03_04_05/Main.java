@@ -1,4 +1,4 @@
-package curso_programacao;
+package br.com.udemy.java.secoes_01_02_03_04_05;
 
 import java.util.Locale;;
 
