@@ -9,10 +9,6 @@ public class ConversaoDataGlobalParaLocal {
 
 	public static void main(String[] args) {
 		
-		/**
-		 * Seção 11|112 - convertendo data-hora global para Local 
-		 */
-		LocalDate dataSimples = LocalDate.parse("1981-09-17");
 		LocalDateTime dataHora = LocalDateTime.parse("1981-09-17T09:50:01");
 		Instant dataHoraGMT = Instant.parse("1981-09-17T09:50:01Z");
 		
