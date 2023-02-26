@@ -13,7 +13,7 @@ import br.com.udemy.java.secao13.entities.enums.WorkerLevel;
 
 public class Exercicio1 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		
 		Locale.setDefault(Locale.US);		
 		Scanner scan = new Scanner(System.in);
@@ -61,23 +61,17 @@ public class Exercicio1 {
 			System.out.println("Enter contract #" + (i+1) +" data: ");
 			
 			System.out.print("Date (DD/MM/YYYY): ");
-			dataString = scan.nextLine();
+			contractDate = formatter.parse(scan.nextLine());
 			
 			System.out.print("Value per hour: ");
 			valuePerHour = scan.nextDouble();
 			
 			System.out.print("Duration (hours): ");
 			contractDuration = scan.nextInt();
-			scan.nextLine();
-			
-			
-			try {
-				contractDate = formatter.parse(dataString);
-				worker.addContract(new HourContract(contractDate, valuePerHour, contractDuration));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			scan.nextLine();			
+
+    		// inclusao do contrato no trabalhador
+			worker.addContract(new HourContract(contractDate, valuePerHour, contractDuration));
 			
 		}		
 		
