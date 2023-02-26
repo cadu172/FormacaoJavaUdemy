@@ -11,6 +11,8 @@ public class Worker {
 	private Double baseSalary;
 	private ArrayList<HourContract> hourContract;
 	private Departament departament;
+	private int year;
+	private int month;
 	
 	public Worker(String name, WorkerLevel level, Double baseSalary, Departament departament) {
 		
@@ -24,10 +26,21 @@ public class Worker {
 		
 	}
 	
-	public void addHourContract(HourContract hourContract) {
+	public void addContract(HourContract hourContract) {
 		this.hourContract.add(hourContract);
 	}
 
+	public void removeContract(HourContract hourContract) {
+		this.hourContract.add(hourContract);
+	}
+	
+	public Double income(int year, int month) {
+		this.year = year;
+		this.month = month;
+		return 458.214d;
+	}
+
+	
 	public String getName() {
 		return name;
 	}
@@ -40,18 +53,27 @@ public class Worker {
 		return baseSalary;
 	}
 	
-	public ArrayList<HourContract> getHourContract() {
-		return hourContract;
-	}
-	
 	public Departament getDepartament() {
 		return departament;
+	}
+	
+	public float getTotalContract() {
+		
+		float sumContract = 0.0f;
+		
+		for (HourContract hourContract2 : hourContract) {
+			sumContract += hourContract2.totalValue();			
+		}
+		
+		return sumContract;
+		
 	}
 
 	@Override
 	public String toString() {
-		return "Worker [name=" + name + ", level=" + level + ", baseSalary=" + baseSalary + ", hourContract="
-				+ hourContract + ", departament=" + departament + "]";
+		return "Name: " + this.getName() + 
+				"\nDepartament: " + this.departament.getName() + 
+				"\nIncome for "+this.month+"/"+this.year+": " + String.format("%.2f", this.getTotalContract()) ;
 	}
 	
 
