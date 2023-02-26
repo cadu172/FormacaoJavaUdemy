@@ -1,6 +1,7 @@
 package br.com.udemy.java.secao13.entities;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import br.com.udemy.java.secao13.entities.enums.WorkerLevel;
 
@@ -11,8 +12,6 @@ public class Worker {
 	private Double baseSalary;
 	private ArrayList<HourContract> hourContract;
 	private Departament departament;
-	private int year;
-	private int month;
 	
 	public Worker(String name, WorkerLevel level, Double baseSalary, Departament departament) {
 		
@@ -31,13 +30,28 @@ public class Worker {
 	}
 
 	public void removeContract(HourContract hourContract) {
-		this.hourContract.add(hourContract);
+		this.hourContract.remove(hourContract);
 	}
 	
 	public Double income(int year, int month) {
-		this.year = year;
-		this.month = month;
-		return 458.214d;
+		
+		Double sum = this.baseSalary;
+		
+		Calendar cal = Calendar.getInstance();
+		
+		for (HourContract item : hourContract) {
+			
+			cal.setTime(item.getDate());
+			
+			int c_year = cal.get(Calendar.YEAR);
+			int c_month = 1 + cal.get(Calendar.MONTH);
+			
+			if (year == c_year && month == c_month) {
+				sum += item.totalValue();
+			}
+		}
+		
+		return sum;
 	}
 
 	
@@ -56,25 +70,6 @@ public class Worker {
 	public Departament getDepartament() {
 		return departament;
 	}
-	
-	public float getTotalContract() {
-		
-		float sumContract = 0.0f;
-		
-		for (HourContract hourContract2 : hourContract) {
-			sumContract += hourContract2.totalValue();			
-		}
-		
-		return sumContract;
-		
-	}
 
-	@Override
-	public String toString() {
-		return "Name: " + this.getName() + 
-				"\nDepartament: " + this.departament.getName() + 
-				"\nIncome for "+this.month+"/"+this.year+": " + String.format("%.2f", this.getTotalContract()) ;
-	}
-	
 
 }

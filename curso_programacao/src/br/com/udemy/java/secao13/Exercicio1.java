@@ -28,9 +28,9 @@ public class Exercicio1 {
 		int contractDuration;
 		int year;
 		int month;
-		String dateYYmm;
+		String dateMMyyyyIncome;
 		
-		String dataString;		
+		// formatador de data
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		
 		
@@ -77,15 +77,14 @@ public class Exercicio1 {
 		
 		
 		System.out.print("Enter month and year to calculate income (MM/YYYY):");
-		dateYYmm = scan.nextLine();
+		dateMMyyyyIncome = scan.nextLine();
 		
-		year = Integer.parseInt(dateYYmm.substring(0, 2));
-		month = Integer.parseInt(dateYYmm.substring(3));
+		month = Integer.parseInt(dateMMyyyyIncome.substring(0, 2));
+		year = Integer.parseInt(dateMMyyyyIncome.substring(3));
 		
-		worker.income(year, month);
-		
-		System.out.println(worker.toString());
-		
+		System.out.println("Name: " + worker.getName());
+		System.out.println("Department: " + worker.getDepartament().getName());
+		System.out.println("Income for "+dateMMyyyyIncome+": "+String.format("%.2f", worker.income(year, month)));		
 		
 		scan.close();	
 		
