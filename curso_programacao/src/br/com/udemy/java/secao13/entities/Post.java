@@ -1,9 +1,6 @@
 package br.com.udemy.java.secao13.entities;
-
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 
 public class Post {
