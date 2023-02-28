@@ -24,4 +24,10 @@ public class PedidoItem {
 		return produto.getPreco()*quantidade;
 	}
 
+	public Produto getProduto() {
+		return produto;
+	}
+	
+	
+
 }
