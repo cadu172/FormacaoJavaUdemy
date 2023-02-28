@@ -61,7 +61,7 @@ public class Pedido {
 		StringBuilder sb = new StringBuilder();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		sb.append("\n------------------------------------------\n");
+		sb.append("\n\n\n------------------------------------------\n");
 		sb.append("ORDER SUMMARY:\n");
 		sb.append("Order moment: " + getDataHoraPedido().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "\n");
 		sb.append("Order status: " + getStatus() + "\n");
@@ -70,13 +70,12 @@ public class Pedido {
 
 		for (PedidoItem pedidoItem : items) {
 			sb.append(
-					pedidoItem.getProduto().getNome() + "," + 
-					String.format("%.2f", pedidoItem.getPreco())  + "," + 	
-					"Quantity:" + pedidoItem.getQuantidade() + "," +
-					"Subtotal:" + String.format("%.2f", pedidoItem.subTotal()) + "\n");
+					pedidoItem.getProduto().getNome() + ", R$ " + String.format("%.2f", pedidoItem.getPreco())  + ", " + 	
+					"Quantity: " + pedidoItem.getQuantidade() + ", " +
+					"Subtotal: R$ " + String.format("%.2f", pedidoItem.subTotal()) + "\n");
 		}
 		
-		sb.append("Total price: " + String.format("%.2f", this.total()) + "\n");
+		sb.append("Total price: R$ " + String.format("%.2f", this.total()) + "\n");
 
 		return sb.toString();		
 		
