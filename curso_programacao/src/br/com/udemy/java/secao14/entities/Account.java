@@ -35,6 +35,7 @@ public class Account {
 	
 	public void withDraw(Double amount) {
 		this.balance -= amount;
+		this.balance -= 5.0;
 	}
 	
 	public void deposit(Double amount) {

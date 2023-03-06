@@ -43,6 +43,7 @@ public class Aula157UpcastingDowncasting {
 		if ( acc2 instanceof  SavingsAccount ) {
 			
 			SavingsAccount acc5 = (SavingsAccount)acc2;
+			// aplicar rendimento de conta-poupança
 			acc5.updateBalance();
 			System.out.println("Conta update");
 			
