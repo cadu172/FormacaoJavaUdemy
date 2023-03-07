@@ -26,7 +26,7 @@ public class SavingsAccount extends Account {
 	}
 	
 	@Override
-	public void withDraw(Double amount) {
+	public final void withDraw(Double amount) {
 		this.balance -= amount;		
 	}	
 
