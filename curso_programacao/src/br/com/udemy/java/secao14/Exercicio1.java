@@ -35,12 +35,12 @@ public class Exercicio1 {
 			scan.nextLine();					
 			
 			System.out.print("Value per hour: ");
-			Double valuePerHour = scan.nextDouble();			
+			float valuePerHour = scan.nextFloat();			
 			
 			if ( ( outsorcedEmployee == 'Y' ) || (  outsorcedEmployee == 'y'  ) ) {
 				
 				System.out.print("Additional charge: ");
-				double additionalCharge = scan.nextDouble();
+				float additionalCharge = scan.nextFloat();
 			
 				employeeList.add(new OutsourcedEmployee(employeeName, workedHours, valuePerHour, additionalCharge));
 
