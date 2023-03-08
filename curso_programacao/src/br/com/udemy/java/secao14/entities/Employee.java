@@ -4,15 +4,15 @@ public class Employee {
 	
 	private String nome;
 	private int hours;
-	private float valuePerHour;
+	private Double valuePerHour;
 	
-	public Employee(String nome, int hours, float valuePerHour) {		
+	public Employee(String nome, int hours, Double valuePerHour) {		
 		this.nome = nome;
 		this.hours = hours;
 		this.valuePerHour = valuePerHour;
 	}
 	
-	public float payment() {
+	public Double payment() {
 		return this.valuePerHour*this.hours;
 	}
 
