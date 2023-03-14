@@ -1,5 +1,6 @@
 package br.com.udemy.java.secao14.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public final class UsedProduct extends Product{
@@ -21,7 +22,10 @@ public final class UsedProduct extends Product{
 	
 	@Override
 	public String priceTag() {
-		return "PriceTag UsedProduct";
+		SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/yyyy");
+		return this.getName() + "(used) $ " + 
+				String.format("%.2f", this.getPrice()) + 
+				" (Manufacture date: $ "+sdf.format(this.getManufactureDate()) +")";
 	}
 	
 	

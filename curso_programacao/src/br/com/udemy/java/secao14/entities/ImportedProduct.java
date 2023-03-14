@@ -19,7 +19,9 @@ public final class ImportedProduct extends Product {
 
 	@Override
 	public String priceTag() {
-		return "Price tag imported";
+		return this.getName() + " $ " + 
+				String.format("%.2f", this.totalPrice()) + 
+				" (Customs fee: $ "+String.format("%.2f", this.getCustomsFee())+")";
 	}
 	
 	public final float totalPrice() {

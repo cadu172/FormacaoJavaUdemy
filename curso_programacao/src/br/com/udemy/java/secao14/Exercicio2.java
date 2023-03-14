@@ -73,23 +73,8 @@ public class Exercicio2 {
 		
 		System.out.println("\n\nPRICE TAGS: ");
 		
-		for (Product product : productList) {
-			
-			if ( product instanceof ImportedProduct ) {
-				
-				ImportedProduct prod = (ImportedProduct)product;				
-				System.out.println(prod.getName() + " $ " + String.format("%.2f", prod.totalPrice()) + " (Customs fee: $ "+String.format("%.2f", prod.getCustomsFee())+")");
-			}
-			else if ( product instanceof UsedProduct  ) {
-				
-				UsedProduct prod = (UsedProduct)product;				
-				System.out.println(prod.getName() + "(used) $ " + String.format("%.2f", prod.getPrice()) + " (Manufacture date: $ "+sdf.format(prod.getManufactureDate()) +")");				
-				
-			}
-			else {
-				System.out.println(product.getName() + " $ " + String.format("%.2f", product.getPrice()));
-			}
-			
+		for (Product product : productList) {			
+			System.out.println(product.priceTag());
 		}
 		
 	}

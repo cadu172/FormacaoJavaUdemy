@@ -30,7 +30,7 @@ public class Product {
 	}
 	
 	public String priceTag() {
-		return "Preço teste";
+		return this.getName() + " $ " + String.format("%.2f", this.getPrice());
 	}
 	
 
