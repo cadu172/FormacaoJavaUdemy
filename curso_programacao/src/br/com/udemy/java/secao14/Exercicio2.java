@@ -1,5 +1,7 @@
 package br.com.udemy.java.secao14;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -11,37 +13,34 @@ import br.com.udemy.java.secao14.entities.UsedProduct;
 
 public class Exercicio2 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 
 		Locale.setDefault(Locale.US);
 		Scanner scan = new Scanner(System.in);
+		
 		//----------------------------------------------------
 		// array com os produtos informados pelo usuário
 		ArrayList<Product> productList = new ArrayList<Product>();
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");		
 		
-		//-----------------------------------------------------		
+		//-----------------------------------------------------
 		System.out.print("Enter the number of products: ");
-		int numberProducts = scan.nextInt();scan.nextLine();
-		
+		int numberProducts = scan.nextInt();scan.nextLine();		
 		
 		for (int item=1; item<=numberProducts; item++) {
-			
-			
-			
 			
 			System.out.println("Product #"+item+" data:");
 			
 			// recebe o tipo de produto
 			System.out.print("Common, used or imported (c/u/i)? ");
-			char productType = scan.next().charAt(0);scan.nextLine();
-			
+			char productType = scan.next().charAt(0);scan.nextLine();			
 			
 			System.out.print("Name: ");
 			String name = scan.nextLine();
 			
 			System.out.print("Price: ");
-			float price = scan.nextFloat();
+			float price = scan.nextFloat();scan.nextLine();
 			
 			if ( productType == 'i'  ) {
 				
@@ -58,21 +57,40 @@ public class Exercicio2 {
 			else if ( productType == 'u' ) {
 				
 				System.out.print("Manufacture date (DD/MM/YYYY): ");
-				Date manufactureDate = scan.next();
+				
+				String dataTexto = scan.nextLine();
+				
+				Date manufactureDate = sdf.parse(dataTexto);
 
-				productList.add( new UsedProduct(name, price) );
+				productList.add( new UsedProduct(name, price, manufactureDate) );
 			
 			}
 			
 		}
 		
-		
-		
-		
-		
-		
 		//----------------------------------------------------
-		scan.close();		
+		scan.close();
+		
+		System.out.println("\n\nPRICE TAGS: ");
+		
+		for (Product product : productList) {
+			
+			if ( product instanceof ImportedProduct ) {
+				
+				ImportedProduct prod = (ImportedProduct)product;				
+				System.out.println(prod.getName() + " $ " + String.format("%.2f", prod.totalPrice()) + " (Customs fee: $ "+String.format("%.2f", prod.getCustomsFee())+")");
+			}
+			else if ( product instanceof UsedProduct  ) {
+				
+				UsedProduct prod = (UsedProduct)product;				
+				System.out.println(prod.getName() + "(used) $ " + String.format("%.2f", prod.getPrice()) + " (Manufacture date: $ "+sdf.format(prod.getManufactureDate()) +")");				
+				
+			}
+			else {
+				System.out.println(product.getName() + " $ " + String.format("%.2f", product.getPrice()));
+			}
+			
+		}
 		
 	}
 
