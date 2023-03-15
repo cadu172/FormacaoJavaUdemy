@@ -1,6 +1,8 @@
 package br.com.udemy.java.secao14.entities;
 
-public class Account {
+/*
+ * Classe alterada para abstract para testes da aula 163*/
+public abstract class Account {
 	
 	private Integer number;
 	private String holder;
