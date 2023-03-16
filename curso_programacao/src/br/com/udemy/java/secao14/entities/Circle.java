@@ -3,6 +3,7 @@ package br.com.udemy.java.secao14.entities;
 public final class Circle extends Shape{
 	
 	private float radius;
+	private static final double PI = 3.14159265358979323846;
 
 	public Circle(String color, float radius) {
 		super(color);
@@ -11,11 +12,11 @@ public final class Circle extends Shape{
 	
 	@Override
 	public float area() {
-		return 3.0000f;
+		return (float)(this.PI*Math.pow(this.radius,2));
 	}
 
 	public float getRadius() {
-		return radius;
+		return this.radius;
 	}
 	
 	

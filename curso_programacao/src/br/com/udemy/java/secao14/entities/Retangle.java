@@ -29,7 +29,7 @@ public final class Retangle extends Shape {
 	
 	@Override
 	public float area() {
-		return 2.0000f;
+		return this.width*this.height;
 	}
 
 
