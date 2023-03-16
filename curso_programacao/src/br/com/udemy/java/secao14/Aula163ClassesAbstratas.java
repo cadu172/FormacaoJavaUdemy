@@ -6,7 +6,7 @@ import br.com.udemy.java.secao14.entities.Account;
 import br.com.udemy.java.secao14.entities.SavingsAccount;
 import br.com.udemy.java.secao14.entities.BussinessAccount;
 
-public class Aula163ClassesAbastratas {
+public class Aula163ClassesAbstratas {
 	
 	public static void main(String[] args) {		
 		
