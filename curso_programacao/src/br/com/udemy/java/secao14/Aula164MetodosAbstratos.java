@@ -10,6 +10,7 @@ import java.util.Scanner;
 import br.com.udemy.java.secao14.entities.Circle;
 import br.com.udemy.java.secao14.entities.Retangle;
 import br.com.udemy.java.secao14.entities.Shape;
+import br.com.udemy.java.secao14.entities.enums.Color;
 
 /**
  * @author I5
@@ -26,7 +27,7 @@ public class Aula164MetodosAbstratos {
 		Locale.setDefault(Locale.US);		
 		Scanner scan = new Scanner(System.in);
 		
-		ArrayList<Shape> figureList = new ArrayList<Shape>();
+		ArrayList<Shape> figureList = new ArrayList<>();
 		
 		System.out.print("Enter the number of shapes: ");
 		int figureQuantity = scan.nextInt();scan.nextLine();
@@ -39,7 +40,7 @@ public class Aula164MetodosAbstratos {
 			char itemType =scan.next().charAt(0);scan.nextLine();
 			
 			System.out.print("Color (BLACK/BLUE/RED): ");
-			String color = scan.nextLine();
+			Color color = Color.valueOf(scan.nextLine());
 			
 			if ( itemType=='r' ) {				
 
@@ -69,7 +70,7 @@ public class Aula164MetodosAbstratos {
 		System.out.println("SHAPE AREAS:");
 		
 		for (Shape shape : figureList) {
-			System.out.println(String.format("%.4f", shape.area()));
+			System.out.println(String.format("%.2f", shape.area()));
 		}
 
 	}

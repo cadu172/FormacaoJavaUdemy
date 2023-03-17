@@ -1,25 +1,22 @@
 package br.com.udemy.java.secao14.entities;
 
+import br.com.udemy.java.secao14.entities.enums.Color;
+
 public abstract class Shape {
 	
-	private String color;
+	private Color color;
 	
-	public Shape() {		
-	}
-	
-	public Shape(String color) {
+	public Shape(Color color) {
 		this.color = color;
 	}
 	
-	public float area() {
-		return 1.0000f;
-	}
+	public abstract float area(); // este aqui é só uma abstração e não deve ter corpo de implementação
 
-	public String getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 	

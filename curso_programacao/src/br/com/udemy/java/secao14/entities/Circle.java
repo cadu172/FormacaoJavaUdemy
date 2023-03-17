@@ -1,18 +1,21 @@
 package br.com.udemy.java.secao14.entities;
 
+import br.com.udemy.java.secao14.entities.enums.Color;
+
 public final class Circle extends Shape{
 	
 	private float radius;
-	private static final double PI = 3.14159265358979323846;
+	private final double PI = 3.14159265358979323846;
 
-	public Circle(String color, float radius) {
+	public Circle(Color
+			color, float radius) {
 		super(color);
 		this.radius = radius;
 	}
 	
 	@Override
 	public float area() {
-		return (float)(this.PI*Math.pow(this.radius,2));
+		return (float)(this.PI * this.radius * this.radius);
 	}
 
 	public float getRadius() {
