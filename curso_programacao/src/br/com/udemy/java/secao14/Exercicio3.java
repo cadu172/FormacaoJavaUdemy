@@ -67,7 +67,7 @@ public class Exercicio3 {
 		
 		System.out.println("");
 		System.out.println("");
-		System.out.println("TOTAL TAXES: $ " + String.format("%.4f", totalImpostos));
+		System.out.println("TOTAL TAXES: $ " + String.format("%.2f", totalImpostos));
 
 	}
 
