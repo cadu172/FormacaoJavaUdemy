@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author carlos
+ *
+ */
+module ProjetoExceptionSolucaoRuim {
+}
