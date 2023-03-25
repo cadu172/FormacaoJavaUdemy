@@ -15,27 +15,29 @@ public class ExercicioFixacao {
 		
 		try {		
 		
-			System.out.print("Informe o nome do titular da conta: ");
+			System.out.println("### INFORME OS DADOS DA CONTA ###\n");
+			
+			System.out.print("Numero da Conta: ");
+			Integer numeroDaConta = scan.nextInt();scan.nextLine();
+			
+			System.out.print("Nome do titular da conta: ");
 			String nomeTitular = scan.nextLine();
 			
-			System.out.print("Informe o Numero da Conta: ");
-			Integer numeroDaConta = scan.nextInt();
-			
-			System.out.print("Informe o Saldo inicial da Conta: ");
+			System.out.print("Saldo Inicial: ");
 			Double saldo = scan.nextDouble();
 			
-			System.out.print("Informe o Limite Maximo de Saque: ");
+			System.out.print("Limite Maximo de Saque: ");
 			Double limiteDeSaque = scan.nextDouble();
 			
 			Conta contaCorrente = new Conta(numeroDaConta, nomeTitular, saldo, limiteDeSaque);
 			
-			System.out.print("Qual o valor do Saque? ");
+			System.out.print("\nQual o valor do Saque: ");
 			Double valorDoSaque = scan.nextDouble();
 			
 			contaCorrente.efetuarSaque(valorDoSaque);
 			
 			System.out.println();
-			System.out.println("Saldo Apos Operacao de Saque: " + String.format("%.2f", contaCorrente.getSaldo()));		
+			System.out.println("Saldo Apos Operacao: " + String.format("%.2f", contaCorrente.getSaldo()));		
 			
 		
 		}
