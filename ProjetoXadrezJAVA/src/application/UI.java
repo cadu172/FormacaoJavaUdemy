@@ -8,6 +8,10 @@ public class UI {
 	
 	public static void printBoard(ChessPiece[][] pieces, Board board) {
 		
+		/* Aqui precisaria apenas do ChessMatch com parametro para impressão do tabuleiro
+		 * desta forma seria reduzido para apenas um parametro: Dica do livro Código Limpo 
+		 */
+		
 		for ( int row=0; row<board.getRows(); row++ ) {
 			
 			System.out.print((8-row)+ " ");
