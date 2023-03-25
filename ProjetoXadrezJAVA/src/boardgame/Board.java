@@ -11,20 +11,28 @@ public class Board {
 		this.columns = columns;
 		pieces = new Piece[rows][columns];
 	}
+	
+	public Piece piece(int row, int column) {
+		return this.pieces[row][column];
+	}
+	
+	public Piece piece(Position position) {
+		return this.pieces[position.getRow()][position.getColumn()];
+	}	
 
-	protected int getRows() {
+	public int getRows() {
 		return rows;
 	}
 
-	protected void setRows(int rows) {
+	public void setRows(int rows) {
 		this.rows = rows;
 	}
 
-	protected int getColumns() {
+	public int getColumns() {
 		return columns;
 	}
 
-	protected void setColumns(int columns) {
+	public void setColumns(int columns) {
 		this.columns = columns;
 	}
 	
