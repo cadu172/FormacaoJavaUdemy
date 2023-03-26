@@ -21,7 +21,15 @@ public class Board {
 			return this.pieces[position.getRow()][position.getColumn()];
 		}
 		return null;
-	}	
+	}
+	
+	public void placePiece(Piece piece, Position position) {
+		if ( this.thereIsAPiece(position) ) {
+			throw new BoardException("Posicao selecionada ja possui uma peca");
+		}
+		this.pieces[position.getRow()][position.getColumn()] = piece;
+		piece.setPositionOnBoard(position); 
+	}
 
 	public int getRows() {
 		return rows;
@@ -57,6 +65,6 @@ public class Board {
 		
 		return false;
 		
-	}
+	}	
 
 }

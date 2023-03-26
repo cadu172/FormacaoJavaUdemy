@@ -34,6 +34,10 @@ public class Piece {
 		return board;
 	}
 	
+	public void setPositionOnBoard(Position position) {
+		this.position = position;
+	}
+	
 	
 
 }
