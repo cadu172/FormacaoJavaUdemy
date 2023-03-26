@@ -35,13 +35,13 @@ public class ChessMatch {
 	/*
 	 * Este método vai inicializar o tabuleiro com as peças nas posições iniciais do jogo*/
 	public void InitialSetup() {
-		board.placePiece(new King(board, Color.BLACK), new Position(0, 4));
-		board.placePiece(new Rook(board, Color.BLACK), new Position(0, 0));
-		board.placePiece(new Rook(board, Color.BLACK), new Position(0, 7));
+		board.placePiece(new King(board, Color.BLACK), new ChessPosition('d', 8).toPosition());
+		board.placePiece(new Rook(board, Color.BLACK), new ChessPosition('a', 8).toPosition());
+		board.placePiece(new Rook(board, Color.BLACK), new ChessPosition('h', 8).toPosition());
 		
-		board.placePiece(new King(board, Color.WHITE), new Position(7, 4));
-		board.placePiece(new Rook(board, Color.WHITE), new Position(7, 0));
-		board.placePiece(new Rook(board, Color.WHITE), new Position(7, 7));
+		board.placePiece(new King(board, Color.WHITE), new ChessPosition('d', 1).toPosition());
+		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('a', 1).toPosition());
+		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('h', 1).toPosition());
 
 	}
 
