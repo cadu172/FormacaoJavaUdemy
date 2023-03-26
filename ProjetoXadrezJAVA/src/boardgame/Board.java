@@ -17,10 +17,16 @@ public class Board {
 	}
 	
 	public Piece piece(Position position) {
-		return this.pieces[position.getRow()][position.getColumn()];
+		if ( positionExists(position) ) {
+			return this.pieces[position.getRow()][position.getColumn()];
+		}
+		return null;
 	}
 	
 	public void placePiece(Piece piece, Position position) {
+		if ( this.thereIsAPiece(position) ) {
+			throw new BoardException("Posicao selecionada ja possui uma peca");
+		}
 		this.pieces[position.getRow()][position.getColumn()] = piece;
 		piece.setPositionOnBoard(position); 
 	}
@@ -29,18 +35,37 @@ public class Board {
 		return rows;
 	}
 
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-
 	public int getColumns() {
 		return columns;
 	}
 
-	public void setColumns(int columns) {
-		this.columns = columns;
+	public boolean positionExists(Position position) {
+		
+		int row = position.getRow();
+		int column = position.getColumn();
+		
+		if ( ! ( row>=0 && row<this.rows && column>=0 && column<this.columns )  ) {
+			throw new BoardException("Posicao nao existe no tabuleiro");
+		}
+		
+		return true;
+		
 	}
 	
+	public boolean thereIsAPiece(Position position) {
+		
+		if ( positionExists(position) ) {
+			
+			int row = position.getRow();
+			int column = position.getColumn();
+			
+			return this.pieces[row][column] != null;
+			
+		}
+		
+		return false;
+		
+	}	
 	
 	
 	
