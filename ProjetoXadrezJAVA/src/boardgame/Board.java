@@ -7,20 +7,40 @@ public class Board {
 	private Piece[][] pieces;
 	
 	public Board(int rows, int columns) {
+		
+		if (  ! ( rows==8 && columns==8  ) ) {
+			throw new BoardException("O Tabuleiro do Xadrez requer 8 linhas e 8 colunas");
+		}
+		
 		this.rows = rows;
 		this.columns = columns;
 		pieces = new Piece[rows][columns];
 	}
 	
+	public boolean positionExists(int row, int column) {
+		return ( row>=0 && row<this.rows && column>=0 && column<this.columns );
+	}
+
+	public boolean positionExists(Position position) {
+		return this.positionExists(position.getRow(),position.getColumn());
+	}
+	
+	public boolean thereIsAPiece(Position position) {
+		if ( ! this.positionExists(position)  ) {
+			throw new BoardException("Posicao nao existe no tabuleiro");
+		}
+		return this.piece(position) != null;
+	}	
+	
 	public Piece piece(int row, int column) {
+		if ( ! this.positionExists(row,column)  ) {
+			throw new BoardException("Posicao nao existe no tabuleiro");
+		}
 		return this.pieces[row][column];
 	}
 	
 	public Piece piece(Position position) {
-		if ( positionExists(position) ) {
-			return this.pieces[position.getRow()][position.getColumn()];
-		}
-		return null;
+		return this.piece(position.getRow(),position.getColumn());
 	}
 	
 	public void placePiece(Piece piece, Position position) {
@@ -38,33 +58,7 @@ public class Board {
 	public int getColumns() {
 		return columns;
 	}
-
-	public boolean positionExists(Position position) {
-		
-		int row = position.getRow();
-		int column = position.getColumn();
-		
-		if ( ! ( row>=0 && row<this.rows && column>=0 && column<this.columns )  ) {
-			throw new BoardException("Posicao nao existe no tabuleiro");
-		}
-		
-		return true;
-		
-	}
 	
-	public boolean thereIsAPiece(Position position) {
-		
-		if ( positionExists(position) ) {
-			
-			int row = position.getRow();
-			int column = position.getColumn();
-			
-			return this.pieces[row][column] != null;
-			
-		}
-		
-		return false;
-		
-	}	
+	
 
 }
