@@ -1,8 +1,11 @@
 package application;
 
+import java.util.Scanner;
+
 import boardgame.Board;
 import boardgame.Piece;
 import chess.ChessPiece;
+import chess.ChessPosition;
 import chess.Color;
 
 public class UI {
@@ -24,7 +27,20 @@ public class UI {
 	public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
 	public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";	
+	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+	
+	public static ChessPosition readChessPosition(Scanner scan) {
+		
+		String str = scan.nextLine();
+		
+		char column = str.charAt(0);
+		int row = Integer.parseInt(str.substring(1));
+		
+		ChessPosition chessPosition = new ChessPosition(column, row);
+		
+		return chessPosition;
+		
+	}
 	
 	public static void printBoard(ChessPiece[][] pieces, Board board) {
 		

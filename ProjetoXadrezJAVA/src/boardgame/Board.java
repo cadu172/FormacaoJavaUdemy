@@ -61,6 +61,27 @@ public class Board {
 		return columns;
 	}
 	
+	public Piece removePiece(Position position) {
+		
+		if (! this.positionExists(position)) {
+			throw new BoardException("[BoardGame.Board.removePiece] - Posicao nao existe no tabuleiro");
+			
+		}
+		
+		Piece pecaSelecionada = this.piece(position);
+		
+		if ( pecaSelecionada == null ) {
+			return null;			
+		}
+		
+		pecaSelecionada.setPositionOnBoard(null);
+		
+		this.pieces[position.getRow()][position.getColumn()] = null;
+		
+		return pecaSelecionada;
+		
+	}
+	
 	
 
 }

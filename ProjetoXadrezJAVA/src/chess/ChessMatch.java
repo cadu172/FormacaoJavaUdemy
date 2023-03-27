@@ -1,6 +1,7 @@
 package chess;
 
 import boardgame.Board;
+import boardgame.Piece;
 import boardgame.Position;
 import chess.pieces.King;
 import chess.pieces.Rook;
@@ -31,6 +32,38 @@ public class ChessMatch {
 		return piecesArray;
 		
 	}
+	
+	public Piece MakeMove(Position source, Position target) {
+		
+		Piece captured = board.removePiece(target);
+		Piece movedPiece = board.removePiece(source);
+		
+		board.placePiece(movedPiece, target);
+		
+		return captured;
+		
+
+	}
+	
+	public void validateSourcePosition(Position sourcePosition) {
+		if (  ! board.thereIsAPiece(sourcePosition) ) {
+			throw new ChessException("Posicao informada nao possui uma peca");
+		}
+		
+	}
+	
+	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+		
+		Position source = sourcePosition.toPosition();
+		Position target = targetPosition.toPosition();
+		validateSourcePosition(source);
+		
+		ChessPiece capturedPiece = (ChessPiece)this.MakeMove(source,target);
+		
+		return capturedPiece;
+		
+	}
+	
 	
 	/*
 	 * Este método vai inicializar o tabuleiro com as peças nas posições iniciais do jogo*/
