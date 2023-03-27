@@ -10,7 +10,7 @@ public class ChessPosition {
 	public ChessPosition(char column, int row) {
 		
 		if ( ! ( column>='a' && column<='h' && row>=1 && row<=8 )  ) {
-			throw new ChessException("Para a construcao do chessPosition informe valores entre [a..h] e [1..8]");
+			throw new ChessException("Posicao Invalida - Informe valores entre a1 e h8");
 		}
 		
 		this.column = column;
@@ -33,6 +33,10 @@ public class ChessPosition {
 		return row;
 	}
 	
+	@Override
+	public String toString() {
+		return "" + column + row;
+	}	
 	
 
 }

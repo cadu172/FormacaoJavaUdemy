@@ -1,9 +1,10 @@
 package application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import boardgame.Board;
-import boardgame.Piece;
+import chess.ChessException;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -31,22 +32,33 @@ public class UI {
 	
 	public static ChessPosition readChessPosition(Scanner scan) {
 		
-		String str = scan.nextLine();
-		
-		char column = str.charAt(0);
-		int row = Integer.parseInt(str.substring(1));
-		
-		ChessPosition chessPosition = new ChessPosition(column, row);
-		
-		return chessPosition;
+		try {
+			
+			String str = scan.nextLine();
+			
+			char column = str.charAt(0);
+			int row = Integer.parseInt(str.substring(1));			
+			
+			return new ChessPosition(column, row);		
+		}
+		catch (ChessException e) {
+			
+			throw new InputMismatchException(e.getMessage());
+		}
+		catch (RuntimeException e) {
+			
+			throw new InputMismatchException("Posicao da peca invalida, informe valores entre A1 e H8");
+		}
 		
 	}
 	
+	// https://stackoverflow.com/questions/2979383/java-clear-the-console
+	public static void clearScreen() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}	
+	
 	public static void printBoard(ChessPiece[][] pieces, Board board) {
-		
-		/* Aqui precisaria apenas do ChessMatch com parametro para impressão do tabuleiro
-		 * desta forma seria reduzido para apenas um parametro: Dica do livro Código Limpo 
-		 */
 		
 		for ( int row=0; row<board.getRows(); row++ ) {
 			

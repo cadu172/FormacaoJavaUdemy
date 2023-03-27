@@ -1,5 +1,6 @@
 package application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import chess.ChessMatch;
@@ -16,20 +17,31 @@ public class Program {
 		
 		for(;;) {
 			
+			try {
 			
-			UI.printBoard(chessMatch.getPieces(), chessMatch.getBoard());
+				UI.clearScreen();
+				UI.printBoard(chessMatch.getPieces(), chessMatch.getBoard());
+				System.out.println();
+				System.out.println();
+				System.out.print("Digite a Posicao de Origem: ");
+				ChessPosition source = UI.readChessPosition(scan);
+				
+				System.out.println();			
+				System.out.print("Digite a Posicao de Destino: ");
+				ChessPosition target = UI.readChessPosition(scan);
+				
+				ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
+				
+				//teste
 			
-			
-			System.out.println();
-			System.out.println();
-			System.out.print("Digite a Posicao de Origem: ");
-			ChessPosition source = UI.readChessPosition(scan);
-			
-			System.out.println();			
-			System.out.print("Digite a Posicao de Destino: ");
-			ChessPosition target = UI.readChessPosition(scan);
-			
-			ChessPiece capturedPiece = chessMatch.performChessMove(source, target);			
+			}
+			catch(InputMismatchException e) {
+				
+				System.out.println();
+				System.out.println("Erro: " + e.getMessage());
+				scan.nextLine();
+				
+			}
 
 			
 		}

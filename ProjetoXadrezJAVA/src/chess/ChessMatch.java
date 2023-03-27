@@ -52,7 +52,7 @@ public class ChessMatch {
 		
 	}
 	
-	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) throws ChessException {
 		
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
