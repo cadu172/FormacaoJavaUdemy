@@ -50,12 +50,17 @@ public class ChessMatch {
 			throw new ChessException("Posicao informada nao possui uma peca");
 		}
 		
+		if ( ! board.piece(sourcePosition).isThereAnyPossibleMove() ) {
+			throw new ChessException("A peca selecionada nao pode de ser movida");
+		}
+		
 	}
 	
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) throws ChessException {
 		
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
+		
 		validateSourcePosition(source);
 		
 		ChessPiece capturedPiece = (ChessPiece)this.MakeMove(source,target);
