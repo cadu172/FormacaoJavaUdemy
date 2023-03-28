@@ -62,10 +62,19 @@ public class ChessMatch {
 		Position target = targetPosition.toPosition();
 		
 		validateSourcePosition(source);
+		validateTargetPosition(source, target);
 		
 		ChessPiece capturedPiece = (ChessPiece)this.MakeMove(source,target);
 		
 		return capturedPiece;
+		
+	}
+	
+	public void validateTargetPosition(Position sourcePosition, Position targetPosition) { 
+		
+		if ( ! board.piece(sourcePosition).possibleMove(targetPosition)  ) {
+			throw new ChessException("A peca selecionada nao pode de ser movida para a posicao de destino");		
+		}
 		
 	}
 	

@@ -18,7 +18,14 @@ public abstract class ChessPiece extends Piece {
 	}
 	
 	protected boolean isThereOponnentPiece(Position position) {
-		return false;
+		ChessPiece selectedPiece = (ChessPiece)this.getBoard().piece(position);
+		
+		if ( selectedPiece != null ) {
+			if ( selectedPiece.color != color ) {
+				return true;
+			}
+		}
+		return false;		
 	}
 
 	
