@@ -95,11 +95,11 @@ public class ChessMatch {
 		board.placePiece(new Rook(board, Color.BLACK), new ChessPosition('c', 7).toPosition());
 		board.placePiece(new Rook(board, Color.BLACK), new ChessPosition('e', 7).toPosition());		
 		
-		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('d', 1).toPosition());
+		board.placePiece(new King(board, Color.WHITE), new ChessPosition('d', 1).toPosition());
 		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('c', 1).toPosition());
 		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('e', 1).toPosition());
 
-		board.placePiece(new King(board, Color.WHITE), new ChessPosition('d', 2).toPosition());
+		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('d', 2).toPosition());
 		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('c', 2).toPosition());
 		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('e', 2).toPosition());		
 		
