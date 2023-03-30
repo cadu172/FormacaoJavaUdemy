@@ -27,6 +27,9 @@ public class Program {
 				System.out.print("Digite a Posicao de Origem: ");
 				ChessPosition source = UI.readChessPosition(scan);
 				
+				UI.clearScreen();
+				UI.printBoard(chessMatch.getPieces(), chessMatch.getBoard(),chessMatch.possibleMovies(source));
+				
 				System.out.println();			
 				System.out.print("Digite a Posicao de Destino: ");
 				ChessPosition target = UI.readChessPosition(scan);
