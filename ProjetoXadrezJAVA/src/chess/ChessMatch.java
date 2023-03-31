@@ -9,15 +9,35 @@ import chess.pieces.Rook;
 public class ChessMatch {
 	
 	private Board board;
+	private int turn;
+	public int getTurn() {
+		return turn;
+	}
+
+	public Color getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+
+	private Color currentPlayer;
+	boolean checkMate;
+	private ChessPiece enPassantVulnerable; 
 	
 	public ChessMatch() {		
 		this.board = new Board(8, 8);
 		this.InitialSetup();
+		this.turn = 0;
+		this.currentPlayer = Color.WHITE;
 	}
 
 	public Board getBoard() {
 		return board;
 	}
+	
+	private void NextTurn() {
+		this.turn++;
+		this.currentPlayer = ( this.currentPlayer == Color.WHITE ) ? Color.BLACK : Color.WHITE;
+	} 
 
 	public ChessPiece[][] getPieces() {
 		
@@ -38,6 +58,26 @@ public class ChessMatch {
 		return board.piece(piecePosition.toPosition()).possibleMoves();		
 	}
 	
+	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) throws ChessException {
+		
+		Position source = sourcePosition.toPosition();
+		Position target = targetPosition.toPosition();
+		
+		validateSourcePosition(source);
+		validateTargetPosition(source, target);
+		
+		ChessPiece capturedPiece = (ChessPiece)this.MakeMove(source,target);
+		
+		this.NextTurn();
+		
+		return capturedPiece;
+		
+	}
+	
+	public ChessPiece replacePromotedPiece( String type) {
+		return null;
+	}
+	
 	public Piece MakeMove(Position source, Position target) {
 		
 		Piece captured = board.removePiece(target);
@@ -55,25 +95,17 @@ public class ChessMatch {
 			throw new ChessException("Posicao informada nao possui uma peca");
 		}
 		
+		if ( ! ( this.currentPlayer == ((ChessPiece)board.piece(sourcePosition)).getColor() ) ) {
+			throw new ChessException("Eh a vez do jogador : " + this.currentPlayer.toString() );
+		}
+		
 		if ( ! board.piece(sourcePosition).isThereAnyPossibleMove() ) {
 			throw new ChessException("A peca selecionada nao pode de ser movida");
 		}
 		
 	}
 	
-	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) throws ChessException {
-		
-		Position source = sourcePosition.toPosition();
-		Position target = targetPosition.toPosition();
-		
-		validateSourcePosition(source);
-		validateTargetPosition(source, target);
-		
-		ChessPiece capturedPiece = (ChessPiece)this.MakeMove(source,target);
-		
-		return capturedPiece;
-		
-	}
+
 	
 	public void validateTargetPosition(Position sourcePosition, Position targetPosition) { 
 		

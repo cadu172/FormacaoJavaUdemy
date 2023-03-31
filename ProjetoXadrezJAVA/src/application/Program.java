@@ -21,7 +21,7 @@ public class Program {
 			try {
 			
 				UI.clearScreen();
-				UI.printBoard(chessMatch.getPieces(), chessMatch.getBoard());
+				UI.printMatch(chessMatch, chessMatch.getBoard());
 				System.out.println();
 				System.out.println();
 				System.out.print("Digite a Posicao de Origem: ");
