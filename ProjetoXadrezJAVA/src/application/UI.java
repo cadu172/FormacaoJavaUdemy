@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import boardgame.Board;
+import boardgame.Piece;
 import chess.ChessException;
 import chess.ChessMatch;
 import chess.ChessPiece;
@@ -78,13 +79,17 @@ public class UI {
 		
 	}
 	
-	public static void printBoard(ChessPiece[][] pieces, Board board, boolean[][] arrayOfPossibleMoves) {
+	//public static void printBoard(ChessPiece[][] pieces, Board board, boolean[][] arrayOfPossibleMoves) {
+	public static void printBoard(ChessMatch chessMatch, ChessPosition source) {
 		
-		for ( int row=0; row<board.getRows(); row++ ) {
+		ChessPiece pieces[][] = chessMatch.getPieces();
+		boolean[][] arrayOfPossibleMoves = chessMatch.possibleMovies(source);
+		
+		for ( int row=0; row<chessMatch.getBoard().getRows(); row++ ) {
 			
 			System.out.print((8-row)+ " ");
 			
-			for ( int col=0; col<board.getColumns(); col++ ) {
+			for ( int col=0; col<chessMatch.getBoard().getColumns(); col++ ) {
 				printPiece(pieces[row][col], arrayOfPossibleMoves[row][col]);
 			}
 			
@@ -121,9 +126,9 @@ public class UI {
 		}		
 	}
 	
-	public static void printMatch(ChessMatch partidaDeXadrez, Board board) {
+	public static void printMatch(ChessMatch partidaDeXadrez) {
 		
-		printBoard(partidaDeXadrez.getPieces(), board);
+		printBoard(partidaDeXadrez.getPieces(), partidaDeXadrez.getBoard());
 		
 		printCapturedPieces(partidaDeXadrez.getCapturedPieces());
 		

@@ -21,23 +21,24 @@ public class Program {
 			try {
 			
 				UI.clearScreen();
-				UI.printMatch(chessMatch, chessMatch.getBoard());
+				UI.printMatch(chessMatch);
 				System.out.println();
 				System.out.println();
 				System.out.print("Digite a Posicao de Origem: ");
 				ChessPosition source = UI.readChessPosition(scan);
 				
 				UI.clearScreen();
-				UI.printBoard(chessMatch.getPieces(), chessMatch.getBoard(),chessMatch.possibleMovies(source));
+				//UI.printBoard(chessMatch.getPieces(), chessMatch.getBoard(),chessMatch.possibleMovies(source));
+				UI.printBoard(chessMatch,source);
 				
 				System.out.println();			
 				System.out.print("Digite a Posicao de Destino: ");
 				ChessPosition target = UI.readChessPosition(scan);
 				
-				ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
-				
-				//teste
-			
+				//ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
+				// no exemplo do professor ele armazena a peça capturada na calsse "UI", mantive essa responsabilidade para a classe chessMatch
+				chessMatch.performChessMove(source, target);
+							
 			}
 			catch(ChessException e) {
 				
