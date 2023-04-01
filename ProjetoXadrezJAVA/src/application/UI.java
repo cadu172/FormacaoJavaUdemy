@@ -1,10 +1,11 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
-
-import javax.imageio.plugins.tiff.ExifParentTIFFTagSet;
-
+import java.util.stream.Collectors;
 import boardgame.Board;
 import chess.ChessException;
 import chess.ChessMatch;
@@ -125,11 +126,34 @@ public class UI {
 		
 		printBoard(partidaDeXadrez.getPieces(), board);
 		
+		printCapturedPieces(partidaDeXadrez.getCapturedPieces());
+		
 		System.out.println();
 		System.out.println();
 		System.out.println("Turno: " + partidaDeXadrez.getTurn());
 		System.out.println("Aguardando jogador: " + partidaDeXadrez.getCurrentPlayer());
 		
+	}
+	
+	public static void printCapturedPieces(List<ChessPiece> capturedPiece) {
+		
+		List<ChessPiece> white = capturedPiece.stream().filter(e -> e.getColor() == Color.WHITE).collect(Collectors.toList());
+		List<ChessPiece> black = capturedPiece.stream().filter(e -> e.getColor() == Color.BLACK).collect(Collectors.toList());
+		
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("Pecas Capturadas");
+		System.out.print("WHITE: ");
+		System.out.print(ANSI_WHITE);
+		System.out.println(Arrays.toString(white.toArray()));	
+		System.out.print(ANSI_RESET);
+		System.out.print("BLACK: ");
+		System.out.print(ANSI_YELLOW);
+		System.out.println(Arrays.toString(black.toArray()));	
+		System.out.print(ANSI_RESET);
+
+	
 	}
 	
 	

@@ -1,5 +1,8 @@
 package chess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import boardgame.Board;
 import boardgame.Piece;
 import boardgame.Position;
@@ -10,15 +13,9 @@ public class ChessMatch {
 	
 	private Board board;
 	private int turn;
-	public int getTurn() {
-		return turn;
-	}
-
-	public Color getCurrentPlayer() {
-		return currentPlayer;
-	}
-
-
+	private List<ChessPiece> piecesOnTheBoard = new ArrayList<>();
+	private List<ChessPiece> capturedPieces = new ArrayList<>();
+	
 	private Color currentPlayer;
 	boolean checkMate;
 	private ChessPiece enPassantVulnerable; 
@@ -29,7 +26,19 @@ public class ChessMatch {
 		this.turn = 0;
 		this.currentPlayer = Color.WHITE;
 	}
+	
+	public List<ChessPiece> getCapturedPieces() {
+		return this.capturedPieces;
+	}
 
+	public int getTurn() {
+		return turn;
+	}
+
+	public Color getCurrentPlayer() {
+		return currentPlayer;
+	}
+	
 	public Board getBoard() {
 		return board;
 	}
@@ -83,6 +92,11 @@ public class ChessMatch {
 		Piece captured = board.removePiece(target);
 		Piece movedPiece = board.removePiece(source);
 		
+		if ( captured != null ) {
+			this.piecesOnTheBoard.remove(captured);
+			this.capturedPieces.add((ChessPiece)captured);
+		}
+		
 		board.placePiece(movedPiece, target);
 		
 		return captured;
@@ -115,25 +129,33 @@ public class ChessMatch {
 		
 	}
 	
+	private void placePieceOnTheBoard ( ChessPiece piece, Position position  ) {
+		
+		board.placePiece(piece, position);
+		
+		this.piecesOnTheBoard.add(piece);
+		
+	}
+	
 	
 	/*
 	 * Este método vai inicializar o tabuleiro com as peças nas posições iniciais do jogo*/
 	public void InitialSetup() {
-		board.placePiece(new King(board, Color.BLACK), new ChessPosition('d', 8).toPosition());
-		board.placePiece(new Rook(board, Color.BLACK), new ChessPosition('c', 8).toPosition());
-		board.placePiece(new Rook(board, Color.BLACK), new ChessPosition('e', 8).toPosition());
+		this.placePieceOnTheBoard(new King(board, Color.BLACK), new ChessPosition('d', 8).toPosition());
+		this.placePieceOnTheBoard(new Rook(board, Color.BLACK), new ChessPosition('c', 8).toPosition());
+		this.placePieceOnTheBoard(new Rook(board, Color.BLACK), new ChessPosition('e', 8).toPosition());
 		
-		board.placePiece(new Rook(board, Color.BLACK), new ChessPosition('d', 7).toPosition());
-		board.placePiece(new Rook(board, Color.BLACK), new ChessPosition('c', 7).toPosition());
-		board.placePiece(new Rook(board, Color.BLACK), new ChessPosition('e', 7).toPosition());		
+		this.placePieceOnTheBoard(new Rook(board, Color.BLACK), new ChessPosition('d', 7).toPosition());
+		this.placePieceOnTheBoard(new Rook(board, Color.BLACK), new ChessPosition('c', 7).toPosition());
+		this.placePieceOnTheBoard(new Rook(board, Color.BLACK), new ChessPosition('e', 7).toPosition());		
 		
-		board.placePiece(new King(board, Color.WHITE), new ChessPosition('d', 1).toPosition());
-		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('c', 1).toPosition());
-		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('e', 1).toPosition());
+		this.placePieceOnTheBoard(new King(board, Color.WHITE), new ChessPosition('d', 1).toPosition());
+		this.placePieceOnTheBoard(new Rook(board, Color.WHITE), new ChessPosition('c', 1).toPosition());
+		this.placePieceOnTheBoard(new Rook(board, Color.WHITE), new ChessPosition('e', 1).toPosition());
 
-		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('d', 2).toPosition());
-		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('c', 2).toPosition());
-		board.placePiece(new Rook(board, Color.WHITE), new ChessPosition('e', 2).toPosition());		
+		this.placePieceOnTheBoard(new Rook(board, Color.WHITE), new ChessPosition('d', 2).toPosition());
+		this.placePieceOnTheBoard(new Rook(board, Color.WHITE), new ChessPosition('c', 2).toPosition());
+		this.placePieceOnTheBoard(new Rook(board, Color.WHITE), new ChessPosition('e', 2).toPosition());		
 		
 	}
 
