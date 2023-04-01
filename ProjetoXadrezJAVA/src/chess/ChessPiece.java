@@ -27,6 +27,10 @@ public abstract class ChessPiece extends Piece {
 		}
 		return false;		
 	}
+	
+	public ChessPosition getChessPosition() {
+		return ChessPosition.fromPostion(position);
+	}
 
 	
 }

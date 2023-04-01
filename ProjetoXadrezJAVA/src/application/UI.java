@@ -133,6 +133,11 @@ public class UI {
 		System.out.println("Turno: " + partidaDeXadrez.getTurn());
 		System.out.println("Aguardando jogador: " + partidaDeXadrez.getCurrentPlayer());
 		
+		if( partidaDeXadrez.getCheck() ) {
+			System.out.println("Rei em CHECK!");
+			
+		}
+		
 	}
 	
 	public static void printCapturedPieces(List<ChessPiece> capturedPiece) {

@@ -2,8 +2,10 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import boardgame.Board;
+import boardgame.BoardException;
 import boardgame.Piece;
 import boardgame.Position;
 import chess.pieces.King;
@@ -15,6 +17,7 @@ public class ChessMatch {
 	private int turn;
 	private List<ChessPiece> piecesOnTheBoard = new ArrayList<>();
 	private List<ChessPiece> capturedPieces = new ArrayList<>();
+	private boolean check = false;
 	
 	private Color currentPlayer;
 	boolean checkMate;
@@ -25,6 +28,52 @@ public class ChessMatch {
 		this.InitialSetup();
 		this.turn = 0;
 		this.currentPlayer = Color.WHITE;
+	}
+	
+	public boolean getCheck() {
+		return check;
+	}
+	
+	private Color opponent(Color color) {
+		return (color==Color.BLACK) ? Color.WHITE : Color.BLACK;
+	}
+	
+	private ChessPiece king(Color color) {
+		
+		List<Piece> lista = piecesOnTheBoard.stream().filter(e -> e.getColor() == color).collect(Collectors.toList());
+		
+		for ( Piece item : lista ) {
+			
+			if ( item instanceof King ) {
+				return (ChessPiece)item;
+			}			
+			
+		}
+		
+		throw new BoardException("Nao foi encontrado o rei " + color + " no tabuleiro, impossivel continuar jogo ");
+		
+	}
+	
+	private boolean testCheck(Color color) {
+		
+		List<Piece> listaOpponent = piecesOnTheBoard.stream().filter(e -> e.getColor() == opponent(color)).collect(Collectors.toList());
+		
+		Position kingPosition = king(color).getChessPosition().toPosition();
+		
+		for (Piece piece : listaOpponent) {
+			
+			boolean[][] arrayOfPossibleMoves = piece.possibleMoves();
+			
+			if ( arrayOfPossibleMoves[kingPosition.getRow()][kingPosition.getColumn()]  )  {
+				
+				return true;
+				
+			}
+			
+		}
+		
+		return false;
+		
 	}
 	
 	public List<ChessPiece> getCapturedPieces() {
@@ -76,6 +125,13 @@ public class ChessMatch {
 		validateTargetPosition(source, target);
 		
 		ChessPiece capturedPiece = (ChessPiece)this.MakeMove(source,target);
+		
+		if (  this.testCheck(currentPlayer) ) {
+			undoMove(source, target, capturedPiece);
+			throw new ChessException("Movimento Ilegal - Voce nao pode se colocar em cheque");
+		}
+		
+		this.check = this.testCheck(opponent(currentPlayer));
 		
 		this.NextTurn();
 		
@@ -134,6 +190,20 @@ public class ChessMatch {
 		board.placePiece(piece, position);
 		
 		this.piecesOnTheBoard.add(piece);
+		
+	}
+	
+	private void undoMove(Position source, Position target, Piece possibleCapturedPiece) {
+		
+		Piece movedPiece = board.removePiece(target);
+		board.placePiece(movedPiece, source);
+		
+		if ( possibleCapturedPiece != null ) {
+			board.placePiece(possibleCapturedPiece, target);
+			capturedPieces.remove(possibleCapturedPiece);
+			piecesOnTheBoard.add((ChessPiece)possibleCapturedPiece);
+		}
+		
 		
 	}
 	
