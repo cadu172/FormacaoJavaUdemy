@@ -19,6 +19,10 @@ public class Program {
 		for(;;) {
 			
 			try {
+				
+				if (  chessMatch.getCheckMate() ) {
+					break;
+				}
 			
 				UI.clearScreen();
 				UI.printMatch(chessMatch);
@@ -58,7 +62,10 @@ public class Program {
 			
 		}
 		
+		UI.clearScreen();
+		UI.printMatch(chessMatch);
 		
+	
 	}
 
 }

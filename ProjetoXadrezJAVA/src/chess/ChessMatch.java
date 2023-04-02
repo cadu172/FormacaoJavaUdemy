@@ -18,9 +18,9 @@ public class ChessMatch {
 	private List<ChessPiece> piecesOnTheBoard = new ArrayList<>();
 	private List<ChessPiece> capturedPieces = new ArrayList<>();
 	private boolean check = false;
+	private boolean checkMate = false;
 	
 	private Color currentPlayer;
-	boolean checkMate;
 	private ChessPiece enPassantVulnerable; 
 	
 	public ChessMatch() {		
@@ -32,6 +32,10 @@ public class ChessMatch {
 	
 	public boolean getCheck() {
 		return check;
+	}
+	
+	public boolean getCheckMate() {
+		return this.checkMate;
 	}
 	
 	private Color opponent(Color color) {
@@ -75,6 +79,42 @@ public class ChessMatch {
 		return false;
 		
 	}
+	
+	private boolean testCheckMate(Color color) 
+	{
+		List<Piece> listaPecas = piecesOnTheBoard.stream().filter(e -> e.getColor() == color).collect(Collectors.toList());
+		
+		
+		for (Piece piece : listaPecas) {
+			
+			boolean[][] arrayOfPossibleMoves = piece.possibleMoves();
+			
+			for(int i=0;i<arrayOfPossibleMoves.length;i++) {
+				for(int j=0;j<arrayOfPossibleMoves.length;j++) {
+					if(arrayOfPossibleMoves[i][j]) {
+						Position origem = ((ChessPiece)piece).getChessPosition().toPosition();
+						Position destino = new Position(i, j);
+						Piece capturada = MakeMove(origem, destino);
+						boolean estaEmCheque = testCheck(color);
+						undoMove(origem, destino, capturada);
+						
+						if (  ! estaEmCheque ) {
+							return false;
+						}
+						
+					}
+				}
+			}
+			
+			return true;
+			
+		}
+		
+		return false;		
+		
+		
+	}
+	
 	
 	public List<ChessPiece> getCapturedPieces() {
 		return this.capturedPieces;
@@ -133,11 +173,21 @@ public class ChessMatch {
 		
 		this.check = this.testCheck(opponent(currentPlayer));
 		
-		this.NextTurn();
+		if ( this.testCheckMate(opponent(currentPlayer)) ) {
+			this.checkMate = true;
+		}
+		else {
+			this.NextTurn();	
+
+		}
+		
+		
 		
 		return capturedPiece;
 		
 	}
+	
+	
 	
 	public ChessPiece replacePromotedPiece( String type) {
 		return null;

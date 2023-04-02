@@ -135,11 +135,22 @@ public class UI {
 		System.out.println();
 		System.out.println();
 		System.out.println("Turno: " + partidaDeXadrez.getTurn());
-		System.out.println("Aguardando jogador: " + partidaDeXadrez.getCurrentPlayer());
 		
-		if( partidaDeXadrez.getCheck() ) {
-			System.out.println("Rei em CHECK!");
+		if ( partidaDeXadrez.getCheck() ) {
 			
+			System.out.println("CHECKMATE!");
+			System.out.println("VENCEDOR: " + partidaDeXadrez.getCurrentPlayer());
+		
+		}
+		else {
+		
+			System.out.println("Aguardando jogador: " + partidaDeXadrez.getCurrentPlayer());
+			
+			if( partidaDeXadrez.getCheck() ) {
+				System.out.println("Rei em CHECK!");
+				
+			}
+		
 		}
 		
 	}
