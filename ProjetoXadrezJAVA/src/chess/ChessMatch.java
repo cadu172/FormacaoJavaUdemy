@@ -208,7 +208,9 @@ public class ChessMatch {
 		
 		ChessPiece captured = (ChessPiece)board.removePiece(target);
 		
-		captured.increaseMoveCount();// será que este método não seria da classe ChessMatch ao invés da classe ChessPiece ?
+		if ( captured != null ) {
+			captured.increaseMoveCount();// será que este método não seria da classe ChessMatch ao invés da classe ChessPiece ?
+		}
 		
 		Piece movedPiece = board.removePiece(source);
 		
@@ -261,7 +263,9 @@ public class ChessMatch {
 		
 		ChessPiece movedPiece = (ChessPiece)board.removePiece(target);
 		
-		movedPiece.decreaseMoveCount();		
+		if ( movedPiece != null ) {
+			movedPiece.decreaseMoveCount();
+		}
 		
 		board.placePiece(movedPiece, source);
 		
