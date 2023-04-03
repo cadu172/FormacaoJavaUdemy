@@ -16,14 +16,10 @@ public class Program {
 		
 		ChessMatch chessMatch = new ChessMatch();
 		
-		for(;;) {
+		while( ! chessMatch.getCheckMate()) {
 			
-			try {
+			try {				
 				
-				if (  chessMatch.getCheckMate() ) {
-					break;
-				}
-			
 				UI.clearScreen();
 				UI.printMatch(chessMatch);
 				System.out.println();
@@ -31,8 +27,7 @@ public class Program {
 				System.out.print("Digite a Posicao de Origem: ");
 				ChessPosition source = UI.readChessPosition(scan);
 				
-				UI.clearScreen();
-				//UI.printBoard(chessMatch.getPieces(), chessMatch.getBoard(),chessMatch.possibleMovies(source));
+				UI.clearScreen();				
 				UI.printBoard(chessMatch,source);
 				
 				System.out.println();			
@@ -63,8 +58,7 @@ public class Program {
 		}
 		
 		UI.clearScreen();
-		UI.printMatch(chessMatch);
-		
+		UI.printMatch(chessMatch);	
 	
 	}
 

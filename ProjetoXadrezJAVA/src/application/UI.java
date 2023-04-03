@@ -136,7 +136,7 @@ public class UI {
 		System.out.println();
 		System.out.println("Turno: " + partidaDeXadrez.getTurn());
 		
-		if ( partidaDeXadrez.getCheck() ) {
+		if ( partidaDeXadrez.getCheckMate() ) {
 			
 			System.out.println("CHECKMATE!");
 			System.out.println("VENCEDOR: " + partidaDeXadrez.getCurrentPlayer());
@@ -147,7 +147,7 @@ public class UI {
 			System.out.println("Aguardando jogador: " + partidaDeXadrez.getCurrentPlayer());
 			
 			if( partidaDeXadrez.getCheck() ) {
-				System.out.println("Rei em CHECK!");
+				System.out.println("Rei "+partidaDeXadrez.getCurrentPlayer()+" em CHECK!");
 				
 			}
 		
