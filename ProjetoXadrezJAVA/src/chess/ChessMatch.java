@@ -206,7 +206,10 @@ public class ChessMatch {
 	
 	public Piece MakeMove(Position source, Position target) {
 		
-		Piece captured = board.removePiece(target);
+		ChessPiece captured = (ChessPiece)board.removePiece(target);
+		
+		captured.increaseMoveCount();// será que este método não seria da classe ChessMatch ao invés da classe ChessPiece ?
+		
 		Piece movedPiece = board.removePiece(source);
 		
 		if ( captured != null ) {
@@ -256,7 +259,10 @@ public class ChessMatch {
 	
 	private void undoMove(Position source, Position target, Piece possibleCapturedPiece) {
 		
-		Piece movedPiece = board.removePiece(target);
+		ChessPiece movedPiece = (ChessPiece)board.removePiece(target);
+		
+		movedPiece.decreaseMoveCount();		
+		
 		board.placePiece(movedPiece, source);
 		
 		if ( possibleCapturedPiece != null ) {
