@@ -207,13 +207,10 @@ public class ChessMatch {
 	
 	public Piece MakeMove(Position source, Position target) {
 		
-		ChessPiece captured = (ChessPiece)board.removePiece(target);
+		ChessPiece captured   = (ChessPiece)board.removePiece(target);		
+		ChessPiece movedPiece = (ChessPiece)board.removePiece(source);
 		
-		if ( captured != null ) {
-			captured.increaseMoveCount();// será que este método não seria da classe ChessMatch ao invés da classe ChessPiece ?
-		}
-		
-		Piece movedPiece = board.removePiece(source);
+		movedPiece.increaseMoveCount();
 		
 		if ( captured != null ) {
 			this.piecesOnTheBoard.remove(captured);
@@ -303,7 +300,7 @@ public class ChessMatch {
 		this.placePieceOnTheBoard(new Rook(board, Color.BLACK), new ChessPosition('a', 8).toPosition());
 		this.placePieceOnTheBoard(new Rook(board, Color.BLACK), new ChessPosition('h', 8).toPosition());
 		
-		this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('d', 3).toPosition());
+		this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('d', 7).toPosition());
 		
 		
 		
@@ -311,7 +308,7 @@ public class ChessMatch {
 		this.placePieceOnTheBoard(new Rook(board, Color.WHITE), new ChessPosition('a', 1).toPosition());
 		this.placePieceOnTheBoard(new Rook(board, Color.WHITE), new ChessPosition('h', 1).toPosition());
 		
-		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('d', 2).toPosition());
+		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('e', 6).toPosition());
 		
 		
 	}

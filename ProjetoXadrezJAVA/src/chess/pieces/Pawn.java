@@ -44,7 +44,10 @@ public class Pawn extends ChessPiece {
 				if ( getBoard().positionExists(auxiliar) ) {			
 					if ( ! getBoard().thereIsAPiece(auxiliar) ) {
 						arrayOfPossibleMoves[auxiliar.getRow()][auxiliar.getColumn()] = true;	
-					}				
+					}
+					else {
+						break;
+					}
 				}			
 			
 			}			
@@ -88,44 +91,63 @@ public class Pawn extends ChessPiece {
 
 	private boolean[][] possibleMovesBLACK() {
 
-		
 		boolean[][] arrayOfPossibleMoves = new boolean[this.getBoard().getRows()][this.getBoard().getColumns()];
 		
 		Position auxiliar = new Position(0, 0);		
 		
 		if ( this.getMoveCount() == 0  ) {
-			auxiliar.setValues(position.getRow()+2, position.getColumn());
+			
+			for (int i=1;i<=2; i++) {
+
+				auxiliar.setValues(position.getRow()+i, position.getColumn());
+
+				// peão não cosnsegue matar para frente, consegue somente se mover e não pode ter nenhuma peça na posição
+				if ( getBoard().positionExists(auxiliar) ) {			
+					if ( ! getBoard().thereIsAPiece(auxiliar) ) {
+						arrayOfPossibleMoves[auxiliar.getRow()][auxiliar.getColumn()] = true;	
+					}
+					else {
+						break;
+					}
+				}			
+			
+			}			
+			
 		}
 		else {
+
 			auxiliar.setValues(position.getRow()+1, position.getColumn());
+			
+			// peão não cosnsegue matar para frente, consegue somente se mover e não pode ter nenhuma peça na posição
+			if ( getBoard().positionExists(auxiliar) ) {			
+				if ( ! getBoard().thereIsAPiece(auxiliar) ) {
+					arrayOfPossibleMoves[auxiliar.getRow()][auxiliar.getColumn()] = true;	
+				}				
+			}			
+			
 		}
 		
-		// peão não cosnsegue matar para frente, consegue somente se mover e não pode ter nenhuma peça na posição
-		if ( getBoard().positionExists(auxiliar) ) {			
-			if ( ! getBoard().thereIsAPiece(auxiliar) ) {
-				arrayOfPossibleMoves[auxiliar.getRow()][auxiliar.getColumn()] = true;	
-			}				
-		}
 		
-		// testar para baixo/esquerda
+		// testar para esquerda/superior
 		auxiliar.setValues(position.getRow()+1, position.getColumn()-1);
 		
 		if ( getBoard().positionExists(auxiliar) ) {
-			if ( ( ! getBoard().thereIsAPiece(auxiliar)  ) || this.isThereOponnentPiece(auxiliar) ) {
+			if ( this.isThereOponnentPiece(auxiliar) ) {
 				arrayOfPossibleMoves[auxiliar.getRow()][auxiliar.getColumn()] = true;				
 			}
 		}
 		
-		// testar para baixo/direita
+		// testar para direita/superior
 		auxiliar.setValues(position.getRow()+1, position.getColumn()+1);
 		
 		if ( getBoard().positionExists(auxiliar) ) {
-			if ( ( ! getBoard().thereIsAPiece(auxiliar)  ) || this.isThereOponnentPiece(auxiliar) ) {
+			if ( this.isThereOponnentPiece(auxiliar) ) {
 				arrayOfPossibleMoves[auxiliar.getRow()][auxiliar.getColumn()] = true;				
 			}
 		}
 		
-		return arrayOfPossibleMoves;
+		return arrayOfPossibleMoves;		
+		
 	}
 
 
