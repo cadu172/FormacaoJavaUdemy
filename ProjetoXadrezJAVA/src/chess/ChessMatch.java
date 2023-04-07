@@ -11,6 +11,7 @@ import boardgame.Position;
 import chess.pieces.Bishop;
 import chess.pieces.King;
 import chess.pieces.Knight;
+import chess.pieces.Pawn;
 import chess.pieces.Queen;
 import chess.pieces.Rook;
 
@@ -285,33 +286,33 @@ public class ChessMatch {
 		this.placePieceOnTheBoard(new Rook(board, Color.BLACK), new ChessPosition('a', 8).toPosition());
 		this.placePieceOnTheBoard(new Knight(board, Color.BLACK), new ChessPosition('b', 8).toPosition());
 		this.placePieceOnTheBoard(new Bishop(board, Color.BLACK), new ChessPosition('c', 8).toPosition());
-		this.placePieceOnTheBoard(new King(board, Color.BLACK), new ChessPosition('d', 8).toPosition());
-		this.placePieceOnTheBoard(new Queen(board, Color.BLACK), new ChessPosition('e', 8).toPosition());
+		this.placePieceOnTheBoard(new Queen(board, Color.BLACK), new ChessPosition('d', 8).toPosition());
+		this.placePieceOnTheBoard(new King(board, Color.BLACK, this), new ChessPosition('e', 8).toPosition());		
 		this.placePieceOnTheBoard(new Bishop(board, Color.BLACK), new ChessPosition('f', 8).toPosition());
 		this.placePieceOnTheBoard(new Knight(board, Color.BLACK), new ChessPosition('g', 8).toPosition());
 		this.placePieceOnTheBoard(new Rook(board, Color.BLACK), new ChessPosition('h', 8).toPosition());
-		/*this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('a', 7).toPosition());
+		this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('a', 7).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('b', 7).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('c', 7).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('d', 7).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('e', 7).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('f', 7).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('g', 7).toPosition());
-		this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('h', 7).toPosition());*/	
+		this.placePieceOnTheBoard(new Pawn(board, Color.BLACK), new ChessPosition('h', 7).toPosition());	
 		//----------------------------------------------------------------------------------------------
-		/*this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('a', 2).toPosition());
+		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('a', 2).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('b', 2).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('c', 2).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('d', 2).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('e', 2).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('f', 2).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('g', 2).toPosition());
-		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('h', 2).toPosition());*/
+		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('h', 2).toPosition());
 		this.placePieceOnTheBoard(new Rook(board, Color.WHITE), new ChessPosition('a', 1).toPosition());
 		this.placePieceOnTheBoard(new Knight(board, Color.WHITE), new ChessPosition('b', 1).toPosition());
-		this.placePieceOnTheBoard(new Bishop(board, Color.WHITE), new ChessPosition('c', 1).toPosition());
-		this.placePieceOnTheBoard(new King(board, Color.WHITE), new ChessPosition('d', 1).toPosition());
-		this.placePieceOnTheBoard(new Queen(board, Color.WHITE), new ChessPosition('e', 1).toPosition());
+		this.placePieceOnTheBoard(new Bishop(board, Color.WHITE), new ChessPosition('c', 1).toPosition());		
+		this.placePieceOnTheBoard(new Queen(board, Color.WHITE), new ChessPosition('d', 1).toPosition());
+		this.placePieceOnTheBoard(new King(board, Color.WHITE, this), new ChessPosition('e', 1).toPosition());
 		this.placePieceOnTheBoard(new Bishop(board, Color.WHITE), new ChessPosition('f', 1).toPosition());
 		this.placePieceOnTheBoard(new Knight(board, Color.WHITE), new ChessPosition('g', 1).toPosition());
 		this.placePieceOnTheBoard(new Rook(board, Color.WHITE), new ChessPosition('h', 1).toPosition());			
