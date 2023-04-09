@@ -113,16 +113,16 @@ public class King extends ChessPiece {
 		 regras:
 		 
 		 OK-1 - Rei e torre sem nenhum movimento
-		 2 - Duas casas a direita do rei vazia se o roque for com a torre da direita (roque do rei)
-		 3 - Duas casas a esquerda do rei vazia se o roque for com a torre da esquerda (roque da rainha)
+		 OK 2 - Duas casas a direita do rei vazia se o roque for com a torre da direita (roque do rei)
+		 OK 3 - Duas casas a esquerda do rei vazia se o roque for com a torre da esquerda (roque da rainha)
 		 OK-4 - O rei nao pode estar em xeque
 		 */
 		if ( this.getMoveCount() == 0 && ! this.chessMatch.getCheck() ) {
 			
 			// teste do Roque do rei
-			Position positionKingRook = new Position(this.position.getRow(), this.position.getColumn()+3);
+			Position positionRookOfKing = new Position(this.position.getRow(), this.position.getColumn()+3);
 			
-			if ( this.testRookCastling(positionKingRook)  ) {
+			if ( this.testRookCastling(positionRookOfKing)  ) {
 				
 				Position p1 = new Position(this.position.getRow(), this.position.getColumn()+1); 
 				Position p2 = new Position(this.position.getRow(), this.position.getColumn()+2);
@@ -135,9 +135,9 @@ public class King extends ChessPiece {
 			
 			
 			// teste do Roque do rei
-			Position positionQueenRook = new Position(this.position.getRow(), this.position.getColumn()-4);
+			Position positionRookOfQueen = new Position(this.position.getRow(), this.position.getColumn()-4);
 			
-			if ( this.testRookCastling(positionQueenRook)  ) {
+			if ( this.testRookCastling(positionRookOfQueen)  ) {
 				
 				Position p1 = new Position(this.position.getRow(), this.position.getColumn()-1); 
 				Position p2 = new Position(this.position.getRow(), this.position.getColumn()-2);

@@ -221,6 +221,24 @@ public class ChessMatch {
 		
 		board.placePiece(movedPiece, target);
 		
+		// #specialmove castling kingside rook
+		if (movedPiece instanceof King && target.getColumn() == source.getColumn() + 2) {
+			Position sourceT = new Position(source.getRow(), source.getColumn() + 3);
+			Position targetT = new Position(source.getRow(), source.getColumn() + 1);
+			ChessPiece rook = (ChessPiece)board.removePiece(sourceT);
+			board.placePiece(rook, targetT);
+			rook.increaseMoveCount();
+		}
+
+		// #specialmove castling queenside rook
+		if (movedPiece instanceof King && target.getColumn() == source.getColumn() - 2) {
+			Position sourceT = new Position(source.getRow(), source.getColumn() - 4);
+			Position targetT = new Position(source.getRow(), source.getColumn() - 1);
+			ChessPiece rook = (ChessPiece)board.removePiece(sourceT);
+			board.placePiece(rook, targetT);
+			rook.increaseMoveCount();
+		}			
+		
 		return captured;
 		
 
@@ -275,6 +293,23 @@ public class ChessMatch {
 			piecesOnTheBoard.add((ChessPiece)possibleCapturedPiece);
 		}
 		
+		// rotina do roque pequeno (roque do rei)
+		if (movedPiece instanceof King && target.getColumn() == source.getColumn() + 2) {
+			Position sourceT = new Position(source.getRow(), source.getColumn() + 3);
+			Position targetT = new Position(source.getRow(), source.getColumn() + 1);
+			ChessPiece rook = (ChessPiece)board.removePiece(targetT);
+			board.placePiece(rook, sourceT);
+			rook.decreaseMoveCount();
+		}
+
+		// rotina de roque longo, roque da rainha
+		if (movedPiece instanceof King && target.getColumn() == source.getColumn() - 2) {
+			Position sourceT = new Position(source.getRow(), source.getColumn() - 4);
+			Position targetT = new Position(source.getRow(), source.getColumn() - 1);
+			ChessPiece rook = (ChessPiece)board.removePiece(targetT);
+			board.placePiece(rook, sourceT);
+			rook.decreaseMoveCount();
+		}
 		
 	}
 	
@@ -309,12 +344,12 @@ public class ChessMatch {
 		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('g', 2).toPosition());
 		this.placePieceOnTheBoard(new Pawn(board, Color.WHITE), new ChessPosition('h', 2).toPosition());
 		this.placePieceOnTheBoard(new Rook(board, Color.WHITE), new ChessPosition('a', 1).toPosition());
-		this.placePieceOnTheBoard(new Knight(board, Color.WHITE), new ChessPosition('b', 1).toPosition());
-		this.placePieceOnTheBoard(new Bishop(board, Color.WHITE), new ChessPosition('c', 1).toPosition());		
-		this.placePieceOnTheBoard(new Queen(board, Color.WHITE), new ChessPosition('d', 1).toPosition());
+		//this.placePieceOnTheBoard(new Knight(board, Color.WHITE), new ChessPosition('b', 1).toPosition());
+		//this.placePieceOnTheBoard(new Bishop(board, Color.WHITE), new ChessPosition('c', 1).toPosition());		
+		//this.placePieceOnTheBoard(new Queen(board, Color.WHITE), new ChessPosition('d', 1).toPosition());
 		this.placePieceOnTheBoard(new King(board, Color.WHITE, this), new ChessPosition('e', 1).toPosition());
-		this.placePieceOnTheBoard(new Bishop(board, Color.WHITE), new ChessPosition('f', 1).toPosition());
-		this.placePieceOnTheBoard(new Knight(board, Color.WHITE), new ChessPosition('g', 1).toPosition());
+		//this.placePieceOnTheBoard(new Bishop(board, Color.WHITE), new ChessPosition('f', 1).toPosition());
+		//this.placePieceOnTheBoard(new Knight(board, Color.WHITE), new ChessPosition('g', 1).toPosition());
 		this.placePieceOnTheBoard(new Rook(board, Color.WHITE), new ChessPosition('h', 1).toPosition());			
 		
 		
