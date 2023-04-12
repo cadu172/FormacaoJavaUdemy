@@ -1,13 +1,12 @@
 package br.com.udemy.java.secao17;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class Aula215FileReaderBufferedReader {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 		
 		FileReader leitorDeArquivo = null;
 		BufferedReader leitorDeBuffer = null;
@@ -29,7 +28,7 @@ public class Aula215FileReaderBufferedReader {
 			
 			System.out.println(e.getMessage());
 			
-		}
+		}		
 		finally {
 			
 			try {
