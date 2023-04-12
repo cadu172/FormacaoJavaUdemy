@@ -1,4 +1,4 @@
-package br.com.udemy.java.secoes_01_02_03_04_05;
+package br.com.udemy.java.secao_01_02_03_04_05;
 
 public class EscopoDeVariaveis {
 
