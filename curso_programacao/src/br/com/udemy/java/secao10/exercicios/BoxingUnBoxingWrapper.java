@@ -3,7 +3,6 @@ package br.com.udemy.java.secao10.exercicios;
 public class BoxingUnBoxingWrapper {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		int x = 20;
 		

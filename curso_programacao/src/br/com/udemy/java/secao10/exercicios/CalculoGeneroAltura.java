@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class CalculoGeneroAltura {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		Locale.setDefault(Locale.US);		
 		Scanner scan = new Scanner(System.in);

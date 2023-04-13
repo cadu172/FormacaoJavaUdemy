@@ -11,7 +11,7 @@ public final class OutsourcedEmployee extends Employee {
 
 	@Override
 	public final float payment() {
-		// TODO Auto-generated method stub
+
 		return super.payment()+(this.additionalCharge*1.10f);
 	}
 

@@ -23,7 +23,7 @@ public class Knight extends ChessPiece {
 		
 		Position posicaoAux = new Position(0, 0);		
 		
-		// --------------- CIMA	
+		/* --------------- CIMA */
 		posicaoAux.setValues(position.getRow()-2, position.getColumn()-1);
 		
 		// caso seja uma posição valida e na posição esteja um adversário

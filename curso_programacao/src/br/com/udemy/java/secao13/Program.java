@@ -8,7 +8,6 @@ import br.com.udemy.java.secao13.entities.enums.OrderStatus;
 public class Program {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		Order pedido = new Order(1234, new Date(), OrderStatus.PAGAMENTO_PENDENTE );		
 		System.out.println(pedido);

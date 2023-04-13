@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.com.udemy.java.secao14;
 
 import java.util.ArrayList;
@@ -12,18 +9,10 @@ import br.com.udemy.java.secao14.entities.Retangle;
 import br.com.udemy.java.secao14.entities.Shape;
 import br.com.udemy.java.secao14.entities.enums.Color;
 
-/**
- * @author I5
- *
- */
 public class Aula164MetodosAbstratos {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 
-		// TODO Auto-generated method stub
 		Locale.setDefault(Locale.US);		
 		Scanner scan = new Scanner(System.in);
 		
