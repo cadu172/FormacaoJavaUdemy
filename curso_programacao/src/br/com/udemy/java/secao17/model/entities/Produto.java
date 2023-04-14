@@ -41,7 +41,8 @@ public final class Produto {
 		return this.value * this.quantity;
 	}
 	
-	public String getCSVLine() {
+	@Override
+	public String toString() {
 		return this.getName() + "," + String.format("%.2f", this.getTotalValue()) ;
 	}
 

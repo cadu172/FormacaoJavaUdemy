@@ -51,7 +51,7 @@ public class Aula220ExercicioProposto {
 						 * No meu caso eu gravei diretamente e aproveitei o mesmo loop e economizei na memoria
 						 * */
 						
-						gravadorDeBuffer.write(produto.getCSVLine());
+						gravadorDeBuffer.write(produto.toString());
 						gravadorDeBuffer.newLine();
 					
 					}
