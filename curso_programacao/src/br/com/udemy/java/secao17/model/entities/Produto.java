@@ -1,4 +1,4 @@
-package br.com.udemy.java.secao17.entities;
+package br.com.udemy.java.secao17.model.entities;
 
 public final class Produto {
 	
@@ -39,6 +39,10 @@ public final class Produto {
 	
 	public float getTotalValue() {
 		return this.value * this.quantity;
+	}
+	
+	public String getCSVLine() {
+		return this.getName() + "," + String.format("%.2f", this.getTotalValue()) ;
 	}
 
 }
