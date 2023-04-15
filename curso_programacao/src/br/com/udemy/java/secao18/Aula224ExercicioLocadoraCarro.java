@@ -20,27 +20,27 @@ public class Aula224ExercicioLocadoraCarro {
 		System.out.println("Entre com os dados do aluguel");
 		
 		System.out.print("Modelo do Carro: ");
-		String modeloCarro = scan.nextLine();
+		String carModel = scan.nextLine();
 				
 		System.out.print("Data de Locacao (DD/MM/YYYY HH:MM:): ");
 		String dataAuxiliar = scan.nextLine();
-		LocalDateTime dataLocacao = LocalDateTime.parse(dataAuxiliar,DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+		LocalDateTime start = LocalDateTime.parse(dataAuxiliar,DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 
 		System.out.print("Data de Entrega do Veiculo (DD/MM/YYYY HH:MM:): ");
 		dataAuxiliar = scan.nextLine();
-		LocalDateTime dataEntregaVeiculo = LocalDateTime.parse(dataAuxiliar,DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+		LocalDateTime finish = LocalDateTime.parse(dataAuxiliar,DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 		
 		System.out.print("Preco da Locacao por Hora:  ");
-		float precoPorHora = scan.nextFloat();
+		float pricePerHour = scan.nextFloat();
 
 		System.out.print("Preco da Locacao por Dia:  ");
-		float precoPorDia = scan.nextFloat();
+		float pricePerDay = scan.nextFloat();
 		
 		
 		try {
 		
-			CarRental carRental = new CarRental(dataLocacao, dataEntregaVeiculo, new Vehicle(modeloCarro));
-			RentalService rentalService = new RentalService(precoPorHora, precoPorDia, new BrazilTaxService() );
+			CarRental carRental = new CarRental(start, finish, new Vehicle(carModel));
+			RentalService rentalService = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService() );
 			
 			rentalService.processInvoice(carRental);
 			
