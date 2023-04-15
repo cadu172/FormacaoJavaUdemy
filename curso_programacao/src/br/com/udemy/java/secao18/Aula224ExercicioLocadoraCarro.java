@@ -40,9 +40,9 @@ public class Aula224ExercicioLocadoraCarro {
 		try {
 		
 			CarRental carRental = new CarRental(start, finish, new Vehicle(carModel));
-			RentalService rentalService = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService() );
-			
-			rentalService.processInvoice(carRental);
+			//RentalService rentalService = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService() );
+			//rentalService.processInvoice(carRental);			
+			new RentalService(pricePerHour, pricePerDay, new BrazilTaxService()).processInvoice(carRental);
 			
 			System.out.println("");
 			System.out.println("");

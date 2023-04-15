@@ -1,6 +1,6 @@
 package br.com.udemy.java.secao18.model.services;
 
-public class BrazilTaxService {
+public class BrazilTaxService implements ITaxService {
 	
 	public Double tax(Double ammount) {
 		
