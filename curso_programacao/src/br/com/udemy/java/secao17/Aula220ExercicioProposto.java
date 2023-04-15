@@ -16,14 +16,14 @@ public class Aula220ExercicioProposto {
 		
 		Locale.setDefault(Locale.US);
 		
-		String fullFilePath = "c:\\temp\\products.csv";
+		String pathFileSource = "c:\\temp\\products.csv";
 		
-		try ( BufferedReader leitorDeArquivo = new BufferedReader(new FileReader(fullFilePath))  ) {
+		try ( BufferedReader leitorDeArquivo = new BufferedReader(new FileReader(pathFileSource))  ) {
 			
 			// nome da pasta onde o arquivo está salvo
-			String fileParent = (new File(fullFilePath)).getParent();
+			String pathFileParent = (new File(pathFileSource)).getParent();
 			
-			File newDirectory = new File(fileParent+"\\out");
+			File newDirectory = new File(pathFileParent+"\\out");
 			
 			// criando a nova pasta "out"
 			if ( ! newDirectory.isDirectory() ) {
@@ -32,7 +32,7 @@ public class Aula220ExercicioProposto {
 				}
 			}
 							
-			try (BufferedWriter gravadorDeBuffer = new BufferedWriter(new FileWriter(fileParent + "\\out\\summary.csv") )) {
+			try (BufferedWriter gravadorDeBuffer = new BufferedWriter(new FileWriter(pathFileParent + "\\out\\summary.csv") )) {
 				
 				// obtem a primeira linha do arquivo
 				String currentLine = leitorDeArquivo.readLine();
