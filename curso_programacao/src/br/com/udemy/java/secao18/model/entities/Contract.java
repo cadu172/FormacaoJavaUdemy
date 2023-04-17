@@ -1,5 +1,8 @@
 package br.com.udemy.java.secao18.model.entities;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -46,6 +49,21 @@ public class Contract {
 	
 	public void add(Installment installment) {
 		this.installments.add(installment);
+	}
+	
+	@Override
+	public String toString() {
+		
+		StringBuilder returnString = new StringBuilder();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		
+		returnString.append("Parcelas: \n");
+		
+		for ( Installment item : installments ) {
+			returnString.append(formatter.format(item.getDueDate())  + " - " + String.format("%.2f", item.getAmmout()) + "\n" );
+		}
+		
+		return returnString.toString();
 	}
 	
 
