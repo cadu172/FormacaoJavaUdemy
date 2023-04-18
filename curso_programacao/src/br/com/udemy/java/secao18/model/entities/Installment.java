@@ -1,22 +1,22 @@
 package br.com.udemy.java.secao18.model.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Installment {
 	
-	private Date dueDate;
+	private LocalDate dueDate;
 	private Double ammout;
 	
-	public Installment(Date dueDate, Double ammout) {	
+	public Installment(LocalDate dueDate, Double ammout) {	
 		this.dueDate = dueDate;
 		this.ammout = ammout;
 	}
 
-	public Date getDueDate() {
+	public LocalDate getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(LocalDate dueDate) {
 		this.dueDate = dueDate;
 	}
 
@@ -26,6 +26,11 @@ public class Installment {
 
 	public void setAmmout(Double ammout) {
 		this.ammout = ammout;
+	}
+	
+	@Override
+	public String toString() {		
+		return this.getDueDate()  + " - " + String.format("%.2f", this.getAmmout());		
 	}
 
 }

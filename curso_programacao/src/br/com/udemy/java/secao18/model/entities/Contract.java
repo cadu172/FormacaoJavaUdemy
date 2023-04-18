@@ -1,19 +1,17 @@
 package br.com.udemy.java.secao18.model.entities;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 public class Contract {
 	
 	private Integer number;
-	private Date date;
+	private LocalDate date;
 	private Double totalValue;
-	private ArrayList<Installment> installments = new ArrayList<Installment>();
+	private List<Installment> installments = new ArrayList<Installment>();
 	
-	public Contract(Integer number, Date date, Double totalValue) {		
+	public Contract(Integer number, LocalDate date, Double totalValue) {		
 		this.number = number;
 		this.date = date;
 		this.totalValue = totalValue;
@@ -27,11 +25,11 @@ public class Contract {
 		this.number = number;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -43,7 +41,7 @@ public class Contract {
 		this.totalValue = totalValue;
 	}
 
-	public ArrayList<Installment> getInstallments() {
+	public List<Installment> getInstallments() {
 		return installments;
 	}
 	
@@ -54,15 +52,14 @@ public class Contract {
 	@Override
 	public String toString() {
 		
-		StringBuilder returnString = new StringBuilder();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		StringBuilder returnString = new StringBuilder();	
 		
 		returnString.append("\n");
 		returnString.append("Parcelas:");
 		returnString.append("\n");
 		
 		for ( Installment item : installments ) {
-			returnString.append(formatter.format(item.getDueDate())  + " - " + String.format("%.2f", item.getAmmout()) + "\n" );
+			returnString.append(item + "\n" );
 		}
 		
 		return returnString.toString();

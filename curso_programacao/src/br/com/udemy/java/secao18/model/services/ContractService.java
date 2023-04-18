@@ -9,9 +9,16 @@ import br.com.udemy.java.secao18.model.entities.Installment;
 
 public class ContractService {
 	
+	private IOnlinePaymentService paymentService;
+	
+	public ContractService(IOnlinePaymentService paymentService) {		
+		this.paymentService = paymentService;
+	}
+
 	public void processContract( Contract contract, Integer months ) {
+
 		
-		LocalDate dataInicial = contract.getDate().toInstant().atZone( ZoneId.systemDefault() ).toLocalDate() ;
+		LocalDate dataInicial = contract.getDate();
 		
 		Double amountPerMonth = contract.getTotalValue()/months;
 		
@@ -19,8 +26,6 @@ public class ContractService {
 			
 			// adicionar um mes a data atual
 			dataInicial = dataInicial.plusMonths(1);
-			
-			IOnlinePaymentService paymentService = new PaypalService(); //operação de upcasting
 			
 			// obtem o valor da parcela com taxa de juros
 			Double interestValue = paymentService.interest(amountPerMonth, i);
@@ -32,7 +37,7 @@ public class ContractService {
 			Double installmentValue = interestValue+paymentFeeValue;
 			
 			// nova parcela
-			Installment installment = new Installment(Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant()), installmentValue  );
+			Installment installment = new Installment(dataInicial, installmentValue  );
 			
 			// incluir nova parcela
 			contract.add(installment);
