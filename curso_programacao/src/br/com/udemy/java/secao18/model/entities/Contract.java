@@ -57,7 +57,9 @@ public class Contract {
 		StringBuilder returnString = new StringBuilder();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		
-		returnString.append("Parcelas: \n");
+		returnString.append("\n");
+		returnString.append("Parcelas:");
+		returnString.append("\n");
 		
 		for ( Installment item : installments ) {
 			returnString.append(formatter.format(item.getDueDate())  + " - " + String.format("%.2f", item.getAmmout()) + "\n" );

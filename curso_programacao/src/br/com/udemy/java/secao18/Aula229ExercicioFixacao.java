@@ -16,7 +16,7 @@ public class Aula229ExercicioFixacao {
 		Locale.setDefault(Locale.US);		
 		Scanner scan = new Scanner(System.in);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 		
 		System.out.println("Entre os dados do contrato:");
 				
@@ -24,15 +24,15 @@ public class Aula229ExercicioFixacao {
 		Integer contractNumber = scan.nextInt();scan.nextLine();
 		
 		System.out.print("Data (dd/MM/yyyy): ");
-		Date date = sdf.parse(scan.nextLine());
+		Date contractDate = dateFormatter.parse(scan.nextLine());
 		
 		System.out.print("Valor do contrato: ");
-		Double totalValue = scan.nextDouble();
+		Double contractTotalValue = scan.nextDouble();
 		
 		System.out.print("Entre com o numero de parcelas: ");
 		Integer months = scan.nextInt();scan.nextLine();
 		
-		Contract contract = new Contract(contractNumber, date, totalValue);
+		Contract contract = new Contract(contractNumber, contractDate, contractTotalValue);
 		ContractService service = new ContractService();
 		
 		// processamento das parcelas do contrato

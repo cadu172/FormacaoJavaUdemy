@@ -4,7 +4,7 @@ public class PaypalService implements IOnlinePaymentService {
 	
 	@Override
 	public Double interest(Double amount, Integer months) {
-		return amount * (1+(months/100));
+		return amount * ( 1 + (0.01d * months) );
 	}
 
 	@Override

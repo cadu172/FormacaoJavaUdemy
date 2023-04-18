@@ -28,8 +28,11 @@ public class ContractService {
 			// acrescenta + 2% de taxa de pagamento
 			Double paymentFeeValue = paymentService.paymentFee(interestValue);
 			
+			// valor total da parcela
+			Double installmentValue = interestValue+paymentFeeValue;
+			
 			// nova parcela
-			Installment installment = new Installment(Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant()), ( interestValue+paymentFeeValue ) );
+			Installment installment = new Installment(Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant()), installmentValue  );
 			
 			// incluir nova parcela
 			contract.add(installment);
