@@ -2,9 +2,9 @@ package br.com.udemy.java.secao18;
 
 import java.util.Locale;
 
+import br.com.udemy.java.secao18.model.entities.AbstractShape;
 import br.com.udemy.java.secao18.model.entities.Circle;
 import br.com.udemy.java.secao18.model.entities.Retangle;
-import br.com.udemy.java.secao18.model.entities.Shape;
 import br.com.udemy.java.secao18.model.enums.Color;
 
 public class Aula232HerdarOuCumprirContrato {
@@ -13,8 +13,8 @@ public class Aula232HerdarOuCumprirContrato {
 		
 		Locale.setDefault(Locale.US);
 		
-		Shape circle = new Circle(Color.BLACK, 2.0);
-		Shape retangle = new Retangle(Color.WHITE, 3.0, 4.0);
+		AbstractShape circle = new Circle(Color.BLACK, 2.0);
+		AbstractShape retangle = new Retangle(Color.WHITE, 3.0, 4.0);
 		
 		System.out.println("Circle Area: " + circle.area());
 		System.out.println("Retangle Area: " + retangle.area());

@@ -2,7 +2,7 @@ package br.com.udemy.java.secao18.model.entities;
 
 import br.com.udemy.java.secao18.model.enums.Color;
 
-public class Circle extends Shape {
+public class Circle extends AbstractShape {
 
 
 	private Double radius;

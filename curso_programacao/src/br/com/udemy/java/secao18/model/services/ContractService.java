@@ -1,8 +1,6 @@
 package br.com.udemy.java.secao18.model.services;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 import br.com.udemy.java.secao18.model.entities.Contract;
 import br.com.udemy.java.secao18.model.entities.Installment;
