@@ -2,8 +2,7 @@ package br.com.udemy.java.secao18;
 
 import java.util.Locale;
 
-import br.com.udemy.java.secao18.model.entities.Printer;
-import br.com.udemy.java.secao18.model.entities.Scanner;
+import br.com.udemy.java.secao18.model.entities.ComboDevice;
 
 public class Aula233HerancaMultiplaProblemaDiamante {
 	
@@ -11,15 +10,17 @@ public class Aula233HerancaMultiplaProblemaDiamante {
 		
 		Locale.setDefault(Locale.US);
 		
-		Scanner scanner = new Scanner("HP 1080");
+		ComboDevice device = new ComboDevice("HP SmartTank 517 Series");
 		
-		scanner.processDoc("Carlos.doc");
-		System.out.println(scanner.scan());
+		System.out.println(device.getSerialNumber());
 		
+		System.out.println();
 		
-		Printer printer = new Printer("EPSON LX300");
-		printer.processDoc("Carlos.doc");
-		printer.print("Carlos.doc");
+		device.processDoc("Carlos.doc");
+		
+		System.out.println("Processo Scanner: " + device.scan());
+	
+		device.print("Carlos.doc");
 		
 	}
 
