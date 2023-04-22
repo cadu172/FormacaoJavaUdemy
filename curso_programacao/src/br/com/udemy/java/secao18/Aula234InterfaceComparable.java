@@ -9,26 +9,33 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import br.com.udemy.java.secao18.model.entities.Employee;
+
 public class Aula234InterfaceComparable {
 
 	public static void main(String[] args) {
 		
 		Locale.setDefault(Locale.US);
 		
-		try (BufferedReader leitorDeBuffer = new BufferedReader( new FileReader("c:\\temp\\nomes.csv") )) {
+		try (BufferedReader leitorDeBuffer = new BufferedReader( new FileReader("c:\\temp\\salary.csv") )) {
 			
 			String currentLine = leitorDeBuffer.readLine();
-			List<String> listaEmployee = new ArrayList<>();
+		
+			List<Employee> listaEmployee = new ArrayList<>();
 			
 			while ( currentLine != null ) {				
-				listaEmployee.add(currentLine);				
+				
+				String[] fields = currentLine.split(",");
+				
+				listaEmployee.add( new Employee(fields[0], Double.parseDouble(fields[1])) );				
+				
 				currentLine = leitorDeBuffer.readLine();				
 			}
 			
 			Collections.sort(listaEmployee);
 			
-			for (String nome : listaEmployee) {
-				System.out.println(nome);
+			for (Employee employee : listaEmployee) {
+				System.out.println(employee.getName() + ", " + String.format("%.2f", employee.getSalary()) );
 			}
 			
 		}
