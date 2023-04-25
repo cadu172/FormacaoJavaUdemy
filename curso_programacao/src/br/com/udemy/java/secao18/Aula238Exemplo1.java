@@ -15,18 +15,35 @@ public class Aula238Exemplo1 {
 		System.out.print("How many values: ");
 		Integer quantity = scan.nextInt();scan.nextLine();
 		
-		PrintService lista = new PrintService();
+		PrintService<String> listaString = new PrintService<String>();
+		PrintService<Integer> listaInteger = new PrintService<Integer>();
 		
 		for(int i=1; i<= quantity; i++) {
 			
-			Integer value = scan.nextInt();
 			
-			lista.addValue(value);
+			System.out.print("Digite uma string: ");						
+			listaString.addValue(scan.nextLine());
+			
+			System.out.print("Digite um numero: ");						
+			listaInteger.addValue(scan.nextInt());
+			scan.nextLine();
+			
 		}
 		
-		lista.print();
+		System.out.print("LISTA STRING: ");
+		listaString.print();
 		
+		System.out.println();
+		System.out.println();
+		
+		System.out.print("LISTA INTEGER: ");
+		listaInteger.print();		
 		scan.close();
+		
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("Fim do programa");		
 
 	}
 

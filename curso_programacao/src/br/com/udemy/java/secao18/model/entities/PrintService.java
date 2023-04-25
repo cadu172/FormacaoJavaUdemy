@@ -3,15 +3,15 @@ package br.com.udemy.java.secao18.model.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintService {
+public class PrintService<PrintServiceType> {
 	
-	private List<Integer> myList = new ArrayList<Integer>();
+	private List<PrintServiceType> myList = new ArrayList<PrintServiceType>();
 	
-	public void addValue(Integer value) {
+	public void addValue(PrintServiceType value) {
 		this.myList.add(value);
 	}
 	
-	public Integer first() {
+	public PrintServiceType first() {
 		return this.myList.get(0);
 	}
 	
@@ -33,17 +33,12 @@ public class PrintService {
 			
 			System.out.println("]");		
 
-			System.out.println("First: " + this.myList.get(0));
+			System.out.println("First: " + this.first());
 		
 		}
 		else {
 			System.out.println("Lista vazia");
 		}
-		
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println("Fim do programa");
 		
 	}
 
