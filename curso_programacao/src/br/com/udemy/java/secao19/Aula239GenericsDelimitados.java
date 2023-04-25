@@ -1,4 +1,4 @@
-package br.com.udemy.java.secao18;
+package br.com.udemy.java.secao19;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import br.com.udemy.java.secao18.model.services.CalculationService;
+import br.com.udemy.java.secao19.model.entities.CalculationService;
+import br.com.udemy.java.secao19.model.entities.Product;
 
 public class Aula239GenericsDelimitados {
 
@@ -15,22 +16,24 @@ public class Aula239GenericsDelimitados {
 		
 		Locale.setDefault(Locale.US);
 		
-		try ( BufferedReader bufferReader = new BufferedReader(new FileReader("c:\\temp\\numeros.txt")) ) {
+		try ( BufferedReader bufferReader = new BufferedReader(new FileReader("c:\\temp\\products.csv")) ) {
 			
 			String linha = bufferReader.readLine();
 			
-			List<Integer> lista = new ArrayList<Integer>();
+			List<Product> lista = new ArrayList<Product>();
 			
 			while (  linha != null ) {
 				
-				System.out.println(linha);				
+				String[] arrayProduto = linha.split(",");
 				
-				lista.add(Integer.parseInt(linha));
+				lista.add( new Product(arrayProduto[0], Double.parseDouble(arrayProduto[1])  , Integer.parseInt(arrayProduto[2])) );
 				
 				linha = bufferReader.readLine();				
 			}
 			
-			System.out.println("Maior numero da lista: " + CalculationService.max(lista));
+			Product produto = CalculationService.max(lista);
+			
+			System.out.println("Produto mais caro da Lista: " + produto);
 			
 		}
 		catch ( IOException e ) {

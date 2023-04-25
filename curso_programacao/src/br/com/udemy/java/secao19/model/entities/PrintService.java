@@ -1,4 +1,4 @@
-package br.com.udemy.java.secao18.model.entities;
+package br.com.udemy.java.secao19.model.entities;
 
 import java.util.ArrayList;
 import java.util.List;
