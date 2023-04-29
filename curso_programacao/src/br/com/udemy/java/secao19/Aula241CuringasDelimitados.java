@@ -59,14 +59,13 @@ public class Aula241CuringasDelimitados {
 	
 		List<Integer> myInts = Arrays.asList(1, 2, 3, 4);
 		List<Double> myDoubles = Arrays.asList(3.14, 6.28);
-		List<Object> myObjs = new ArrayList<Object>();
+		List<Number> myObjs = new ArrayList<Number>(); // no lugar de Number pode ser Object já que Object é uma superclasse de Number
 		
 		copy(myInts, myObjs);
 		
 		print(myObjs);
 		
-		copy(myDoubles, myObjs);
-		
+		copy(myDoubles, myObjs);		
 		print(myObjs);
 	
 	}
