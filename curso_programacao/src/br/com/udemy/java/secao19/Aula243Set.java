@@ -11,8 +11,9 @@ public class Aula243Set {
 		/*
 		 * DEMO 1 Set<String> set = new LinkedHashSet<>();
 		 * 
-		 * set.add("TV"); set.add("Notebook"); set.add("Tablet");
-		 * 
+		 * set.add("TV"); 
+		 * set.add("Notebook"); 
+		 * set.add("Tablet"); 
 		 * 
 		 * set.removeIf(x -> x.charAt(0)=='T');
 		 * 
