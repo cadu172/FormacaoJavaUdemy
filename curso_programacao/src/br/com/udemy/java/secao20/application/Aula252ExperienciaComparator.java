@@ -19,7 +19,7 @@ public class Aula252ExperienciaComparator {
 		productList.add(new Product("MOUSE", 75.00));
 		
 		
-		Comparator<Product> productComparator = new Comparator<Product>() {
+		/*Comparator<Product> productComparator = new Comparator<Product>() {
 
 			@Override
 			public int compare(Product p1, Product p2) {
@@ -27,7 +27,9 @@ public class Aula252ExperienciaComparator {
 				return p1.getName().toUpperCase().compareTo(p2.getName().toUpperCase());
 			}
 			
-		};
+		};*/
+		
+		Comparator<Product> productComparator = (Product p1, Product p2) -> p1.getName().toUpperCase().compareTo(p2.getName().toUpperCase());
 		
 		//Collections.sort(productList);
 		//productList.sort(new MyComparator());
