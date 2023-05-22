@@ -29,11 +29,13 @@ public class Aula252ExperienciaComparator {
 			
 		};*/
 		
-		Comparator<Product> productComparator = (Product p1, Product p2) -> p1.getName().toUpperCase().compareTo(p2.getName().toUpperCase());
+		//Comparator<Product> productComparator = (Product p1, Product p2) -> p1.getName().toUpperCase().compareTo(p2.getName().toUpperCase());
 		
 		//Collections.sort(productList);
 		//productList.sort(new MyComparator());
-		productList.sort(productComparator);
+		//productList.sort(productComparator);
+		
+		productList.sort((Product p1, Product p2) -> p1.getName().toUpperCase().compareTo(p2.getName().toUpperCase()));
 		
 		
 		for ( Product item : productList ) {
