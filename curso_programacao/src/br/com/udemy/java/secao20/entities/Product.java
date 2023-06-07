@@ -38,7 +38,15 @@ public class Product implements Comparable<Product>{
 	
 	public boolean nonStaticPredicate() {
 		return this.getPrice() >= 500.00;
-	}	
+	}
+	
+	public static String staticUpperCase(Product p) {
+		return p.getName().toUpperCase();
+	}
+	
+	public String nonStaticUpperCase() {
+		return this.getName().toUpperCase();
+	}
 	
 	@Override
 	public int compareTo(Product prod) {
