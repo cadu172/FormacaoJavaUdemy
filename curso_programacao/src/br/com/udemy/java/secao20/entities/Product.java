@@ -24,6 +24,14 @@ public class Product implements Comparable<Product>{
 		this.price = price;
 	}
 	
+	public static void staticUpdatePrice(Product p) {
+		p.setPrice(p.getPrice()*1.10);
+	}
+	
+	public void nonStaticUpdatePrice() {
+		this.setPrice(this.getPrice()*1.10);
+	}	
+	
 	public static boolean staticPredicate(Product p) {
 		return p.getPrice() >= 1000.00;
 	}
