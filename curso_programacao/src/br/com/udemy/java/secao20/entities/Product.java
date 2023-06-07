@@ -24,6 +24,14 @@ public class Product implements Comparable<Product>{
 		this.price = price;
 	}
 	
+	public static boolean staticPredicate(Product p) {
+		return p.getPrice() >= 1000.00;
+	}
+	
+	public boolean nonStaticPredicate() {
+		return this.getPrice() >= 500.00;
+	}	
+	
 	@Override
 	public int compareTo(Product prod) {
 		// TODO Auto-generated method stub
