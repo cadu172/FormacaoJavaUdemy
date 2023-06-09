@@ -4,15 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import br.com.udemy.java.secao20.entities.Product;
-import br.com.udemy.java.secao20.util.ProductService;
 
-public class Aula260ExercicioStream {
+public class Aula261ExercicioStream {
 
 	public static void main(String[] args) {
 
@@ -34,22 +34,27 @@ public class Aula260ExercicioStream {
 				String[] arrLinha = linhaAtual.split(",");
 				
 				String nomeProduto = arrLinha[0];
-				Double preco = Double.valueOf(arrLinha[1]);
+				Double preco = Double.parseDouble(arrLinha[1]);
 				
 				productList.add(new Product (nomeProduto,preco));
 				
 				linhaAtual = leitorDeArquivo.readLine();
 			}
 			
-			Double valorMedioProduto = ProductService.getAvgOfAllProduct(productList);
+			Double valorMedioProduto = productList.stream()
+					.map(p -> p.getPrice())
+					.reduce(0.00, (x,y) -> x + y) / productList.size();
 			
 			System.out.println("Average price: " + String.format("%.4f", valorMedioProduto));
 			
-			List<Product> listaAbaixoDaMedia = productList.stream().
-						filter(p -> p.getPrice() <= valorMedioProduto)						
-						.collect(Collectors.toList());
+			Comparator<String> comp = (p1,p2) -> p1.toUpperCase().compareTo(p2.toUpperCase());
 			
-			listaAbaixoDaMedia.sort((Product p1, Product p2) -> p2.getName().toUpperCase().compareTo(p1.getName().toUpperCase()));			
+			List<String> listaAbaixoDaMedia = productList.stream()
+						.filter(p -> p.getPrice() < valorMedioProduto)
+						.map(p -> p.getName())
+						.sorted(comp.reversed())
+						.collect(Collectors.toList());			
+						
 			listaAbaixoDaMedia.forEach(System.out::println);
 			
 
