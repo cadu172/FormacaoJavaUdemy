@@ -21,5 +21,21 @@ public class ProductService {
 		return sum;
 		
 	}
+	
+	
+
+	public static double getAvgOfAllProduct(List<Product> list) {
+		
+		double sum = 0.00;
+		int count = 0;
+		
+		for ( Product item : list ) {			
+			sum += item.getPrice();
+			count++;
+		}
+		
+		return sum/count;
+
+	} 
 
 }
