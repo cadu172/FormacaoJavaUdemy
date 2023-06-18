@@ -4,6 +4,8 @@ import java.time.Instant;
 import java.util.Date;
 
 import model.entities.Seller;
+import model.dao.DAOFactory;
+import model.dao.InterfaceSellerDAO;
 import model.entities.Department;
 
 public class program {
@@ -24,6 +26,9 @@ public class program {
 		
 		System.out.println(seller);
 				
+		
+		InterfaceSellerDAO sellerDAO = DAOFactory.createSellerDAO();
+		
 
 	}
 
