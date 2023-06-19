@@ -54,10 +54,13 @@ public class SellerDAOJDBC implements InterfaceSellerDAO {
 			
 			if ( qyrSeller.next() ) {
 				
-				Department department = new Department( qyrSeller.getInt("DepartmentId"), qyrSeller.getString("nameDep") );				
+				//Department department = new Department( qyrSeller.getInt("DepartmentId"), qyrSeller.getString("nameDep") );				
 				
-				Seller seller = new Seller();
+				Department department = new Department();				
+				department.setId(qyrSeller.getInt("DepartmentId"));				
+				department.setName(qyrSeller.getString("nameDep"));
 				
+				Seller seller = new Seller();				
 				seller.setId(qyrSeller.getInt("Id"));
 				seller.setName(qyrSeller.getString("Name"));
 				seller.setEmail(qyrSeller.getString("Email"));

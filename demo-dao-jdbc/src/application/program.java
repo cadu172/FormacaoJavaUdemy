@@ -29,10 +29,13 @@ public class program {
 		
 		InterfaceSellerDAO sellerDAO = DAOFactory.createSellerDAO();
 		
-		Seller seller = sellerDAO.findById(3);
+		Seller seller = sellerDAO.findById(1);
 		
 		if ( seller != null ) {
 			System.out.println(seller);
+		}
+		else {
+			System.out.println("Seller ID not found!");
 		}
 		
 
