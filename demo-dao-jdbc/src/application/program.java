@@ -1,12 +1,11 @@
 package application;
 
-import java.time.Instant;
-import java.util.Date;
+import java.util.List;
 
-import model.entities.Seller;
 import model.dao.DAOFactory;
 import model.dao.InterfaceSellerDAO;
 import model.entities.Department;
+import model.entities.Seller;
 
 public class program {
 
@@ -27,15 +26,27 @@ public class program {
 		System.out.println(seller);*/
 				
 		
+		System.out.println("#### sellerDAO::findById ####");
+		
 		InterfaceSellerDAO sellerDAO = DAOFactory.createSellerDAO();
 		
-		Seller seller = sellerDAO.findById(1);
+		Seller seller = sellerDAO.findById(3);
 		
 		if ( seller != null ) {
 			System.out.println(seller);
 		}
 		else {
 			System.out.println("Seller ID not found!");
+		}
+		
+		System.out.println();
+		System.out.println();
+		
+		System.out.println("#### sellerDAO::findByDepartment ####");
+		List<Seller> sellerList = sellerDAO.findByDepartment(new Department(2, ""));
+		
+		for ( Seller item : sellerList ) {
+			System.out.println(item);
 		}
 		
 
