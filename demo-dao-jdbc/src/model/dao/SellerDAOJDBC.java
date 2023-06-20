@@ -25,7 +25,46 @@ public class SellerDAOJDBC implements InterfaceSellerDAO {
 
 	@Override
 	public void insert(Seller obj) {
-		// TODO Auto-generated method stub
+		
+		PreparedStatement st = null;
+		
+		try {
+			
+			st = this.conn.prepareStatement (
+					 " insert into coursejdbc.seller (name, email, birthdate, basesalary, departmentid) "
+					+" values(?,?,?,?,?);",PreparedStatement.RETURN_GENERATED_KEYS);
+			st.setString(1,obj.getName());
+			st.setString(2,obj.getEmail());
+			st.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
+			st.setDouble(4, obj.getBaseSalary());
+			st.setInt(5, obj.getDepartment().getId());
+			
+			int rowsAffected = st.executeUpdate();
+			
+			if ( rowsAffected > 0  ) {
+				
+				ResultSet rs = st.getGeneratedKeys();
+				
+				if (  rs.next() ) {
+					
+					obj.setId(rs.getInt(1));
+					
+				}
+				
+				DB.closeResultSet(rs);
+				
+			}
+			else {
+				throw new DbException("Erro ao tentar incluir vendedor, nenhum registro incluido apos comando de Insert");
+			}
+			
+		}
+		catch ( SQLException e ) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+		}
 		
 	}
 

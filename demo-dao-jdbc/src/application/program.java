@@ -1,5 +1,6 @@
 package application;
 
+import java.util.Date;
 import java.util.List;
 
 import model.dao.DAOFactory;
@@ -49,16 +50,31 @@ public class program {
 			System.out.println(item);
 		}
 		
-		
+
 		System.out.println();
-		System.out.println();
+		System.out.println("#### sellerDAO::insert ####");
+		Seller newSeller = new Seller();
+		newSeller.setName("Carlos Eduardo");
+		newSeller.setEmail("cadu172@gmail.com");
+		newSeller.setBirthDate(new Date());
+		newSeller.setBaseSalary(7500.22);
+		newSeller.setDepartment(new Department(1, ""));
 		
+		// inclusao do novo funcionario
+		sellerDAO.insert(newSeller);
+		
+		System.out.println("Success, Id of new Seller: " + newSeller.getId());		
+		
+		System.out.println();		
 		System.out.println("#### sellerDAO::findAll ####");
 		sellerList = sellerDAO.findAll();
 		
 		for ( Seller item : sellerList ) {
 			System.out.println(item);
-		}		
+		}
+		
+		
+	
 
 	}
 
