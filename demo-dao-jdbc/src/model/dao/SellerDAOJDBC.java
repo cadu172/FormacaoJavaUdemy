@@ -1,4 +1,4 @@
-package model.dao.implement;
+package model.dao;
 
 
 import java.sql.Connection;
@@ -11,7 +11,7 @@ import java.util.List;
 
 import db.DB;
 import db.DbException;
-import model.dao.InterfaceSellerDAO;
+import model.dao.interfaces.InterfaceSellerDAO;
 import model.entities.Department;
 import model.entities.Seller;
 
@@ -102,8 +102,45 @@ public class SellerDAOJDBC implements InterfaceSellerDAO {
 
 	@Override
 	public List<Seller> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ResultSet qyrSeller = null;
+		PreparedStatement cmd = null;
+		
+		try {		
+			
+			cmd = conn.prepareStatement(" SELECT seller.*,department.Name as DepName "
+					+ "FROM seller INNER JOIN department "
+					+ "ON seller.DepartmentId = department.Id "
+					+ "ORDER BY Name ");			
+			
+			qyrSeller = cmd.executeQuery();
+			
+			List<Seller> sellerList = new ArrayList<>();
+			
+			HashMap<Integer, Department> hashDepartment = new HashMap<>();
+			
+			while ( qyrSeller.next() ) {
+				
+				Department dep = hashDepartment.get(qyrSeller.getInt("DepartmentId"));
+				
+				if ( dep  == null ) {					
+					dep = instantiateDepartment(qyrSeller);					
+					hashDepartment.put(qyrSeller.getInt("DepartmentId"),dep);
+				}
+				
+				sellerList.add(instantiateSeller(qyrSeller, dep));
+			
+			}
+		
+			return sellerList;
+			
+		}
+		catch ( SQLException e ) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeResultSet(qyrSeller);
+			DB.closeStatement(cmd);
+		}
 	}
 
 	@Override

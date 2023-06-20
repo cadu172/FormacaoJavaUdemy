@@ -1,8 +1,8 @@
 package model.dao;
 
 import db.DB;
-import model.dao.implement.DepartmentDAOJDBC;
-import model.dao.implement.SellerDAOJDBC;
+import model.dao.interfaces.InterfaceDepartmentDAO;
+import model.dao.interfaces.InterfaceSellerDAO;
 
 public class DAOFactory {
 	

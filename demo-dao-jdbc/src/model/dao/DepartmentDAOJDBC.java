@@ -1,8 +1,8 @@
-package model.dao.implement;
+package model.dao;
 
 import java.util.List;
 
-import model.dao.InterfaceDepartmentDAO;
+import model.dao.interfaces.InterfaceDepartmentDAO;
 import model.entities.Department;
 
 public class DepartmentDAOJDBC implements InterfaceDepartmentDAO {

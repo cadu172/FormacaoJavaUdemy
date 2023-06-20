@@ -3,7 +3,7 @@ package application;
 import java.util.List;
 
 import model.dao.DAOFactory;
-import model.dao.InterfaceSellerDAO;
+import model.dao.interfaces.InterfaceSellerDAO;
 import model.entities.Department;
 import model.entities.Seller;
 
@@ -49,6 +49,16 @@ public class program {
 			System.out.println(item);
 		}
 		
+		
+		System.out.println();
+		System.out.println();
+		
+		System.out.println("#### sellerDAO::findAll ####");
+		sellerList = sellerDAO.findAll();
+		
+		for ( Seller item : sellerList ) {
+			System.out.println(item);
+		}		
 
 	}
 
