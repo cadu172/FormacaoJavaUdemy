@@ -47,7 +47,7 @@ public class program2 {
 		// inclusao do departamento na base
 		DAODepto.insert(depto);
 		
-		System.out.println("Departamento incluido com sucesso");
+		System.out.println("Departamento incluido com sucesso! ID: " + depto.getId());
 		
 		System.out.println();
 		System.out.println();
@@ -106,6 +106,8 @@ public class program2 {
 		}		
 		
 		scan.close();
+		
+		System.out.println("Fim do programa");
 
 	}
 
