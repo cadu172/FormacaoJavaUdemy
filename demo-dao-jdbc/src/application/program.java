@@ -2,6 +2,7 @@ package application;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import model.dao.DAOFactory;
 import model.dao.interfaces.InterfaceSellerDAO;
@@ -12,22 +13,9 @@ public class program {
 
 	public static void main(String[] args) {
 		
-		/*Department department = new Department(1, "Tecnologia da Informação");		
-		//System.out.println(department);
+		Scanner scan = new Scanner(System.in);				
 		
-		Seller seller = new Seller (
-				1, //Integer id, 
-				"Carlos Eduardo dos Santos Roberto", //String name, 
-				"cadu172@gmail.com", //String email, 
-				Date.from(Instant.parse("1981-09-17T00:00:00Z")), //Date birthDate, 
-				5600.00, //Double baseSalary
-				department
-				);
-		
-		System.out.println(seller);*/
-				
-		
-		System.out.println("#### sellerDAO::findById ####");
+		System.out.println("TESTE 1 - #### sellerDAO::findById ####");
 		
 		InterfaceSellerDAO sellerDAO = DAOFactory.createSellerDAO();
 		
@@ -41,9 +29,8 @@ public class program {
 		}
 		
 		System.out.println();
-		System.out.println();
+		System.out.println("TESTE 2 - #### sellerDAO::findByDepartment ####");
 		
-		System.out.println("#### sellerDAO::findByDepartment ####");
 		List<Seller> sellerList = sellerDAO.findByDepartment(new Department(2, ""));
 		
 		for ( Seller item : sellerList ) {
@@ -52,29 +39,67 @@ public class program {
 		
 
 		System.out.println();
-		System.out.println("#### sellerDAO::insert ####");
-		Seller newSeller = new Seller();
-		newSeller.setName("Carlos Eduardo");
-		newSeller.setEmail("cadu172@gmail.com");
-		newSeller.setBirthDate(new Date());
-		newSeller.setBaseSalary(7500.22);
-		newSeller.setDepartment(new Department(1, ""));
+		System.out.println("TESTE 3 - #### sellerDAO::insert ####");
+		
+		/*seller = new Seller();
+		seller.setName("Carlos Eduardo");
+		seller.setEmail("cadu172@gmail.com");
+		seller.setBirthDate(new Date());
+		seller.setBaseSalary(7500.22);
+		seller.setDepartment(new Department(1, ""));		
 		
 		// inclusao do novo funcionario
-		sellerDAO.insert(newSeller);
+		sellerDAO.insert(seller);
 		
-		System.out.println("Success, Id of new Seller: " + newSeller.getId());		
+		System.out.println("Success, Id of new Seller: " + seller.getId());*/		
 		
 		System.out.println();		
-		System.out.println("#### sellerDAO::findAll ####");
+		System.out.println("TESTE 4 - #### sellerDAO::findAll ####");
+		
 		sellerList = sellerDAO.findAll();
 		
 		for ( Seller item : sellerList ) {
 			System.out.println(item);
 		}
+
+		System.out.println();		
+		System.out.println("TESTE 5 - #### sellerDAO::Update ####");
 		
+		seller = sellerDAO.findById(1); // localzar o Seller id = 1
 		
-	
+		if ( seller != null ) {
+
+			// alterar somente o nome
+			seller.setName("Dos Santos Roberto");
+			
+			// atualizar
+			sellerDAO.update(seller);		
+			
+			System.out.println(seller);
+		}
+		
+		System.out.println();		
+		System.out.println("TESTE 6 - #### sellerDAO::deleteById ####");
+		
+		System.out.print("Informe o ID para Exclusao: ");
+		Integer id = scan.nextInt();scan.nextLine();
+		
+		seller = sellerDAO.findById(id);
+		
+		if ( seller == null ) {
+			System.out.println("ID "+id+" NAO LOCALIZADO!");
+		}
+		else {
+			
+			// atualizar
+			sellerDAO.deleteById(id);
+			
+			System.out.println("Registro excluido com sucesso");
+
+		}		
+		
+		scan.close();
+		
 
 	}
 
