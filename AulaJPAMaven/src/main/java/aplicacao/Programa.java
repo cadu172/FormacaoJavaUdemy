@@ -12,16 +12,13 @@ public class Programa {
 
 	public static void main(String[] args) {
 		
-		
-		/*Pessoa p1 = new Pessoa(null,"Carlos Eduardo","cadu172@gmail.com");
-		Pessoa p2 = new Pessoa(null,"Marco Antonio Silva","marco@gmail.com");
-		Pessoa p3 = new Pessoa(null,"Ronaldo Silva","r9@gmail.com");*/
-		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("exemplo-jpa");
 		EntityManager manager = factory.createEntityManager();
 		
-		/*
-		 * Criando registro no banco usando ORM
+		/*Pessoa p1 = new Pessoa(null,"Carlos Eduardo","cadu172@gmail.com");
+		Pessoa p2 = new Pessoa(null,"Marco Antonio Silva","marco@gmail.com");
+		Pessoa p3 = new Pessoa(null,"Ronaldo Silva","r9@gmail.com");
+		
 		manager.getTransaction().begin();
 		manager.persist(p1);
 		manager.persist(p2);
