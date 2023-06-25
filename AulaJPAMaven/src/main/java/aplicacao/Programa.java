@@ -15,7 +15,7 @@ public class Programa {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("exemplo-jpa");
 		EntityManager manager = factory.createEntityManager();
 		
-		/*Pessoa p1 = new Pessoa(null,"Carlos Eduardo","cadu172@gmail.com");
+		Pessoa p1 = new Pessoa(null,"Carlos Eduardo","cadu172@gmail.com");
 		Pessoa p2 = new Pessoa(null,"Marco Antonio Silva","marco@gmail.com");
 		Pessoa p3 = new Pessoa(null,"Ronaldo Silva","r9@gmail.com");
 		
@@ -23,13 +23,13 @@ public class Programa {
 		manager.persist(p1);
 		manager.persist(p2);
 		manager.persist(p3);
-		manager.getTransaction().commit();*/
+		manager.getTransaction().commit();
 		
 		// localizando uma pessoal usando o find (obs: esta INSTANCIA esta sendo monitorada)
-		Pessoa p1 = manager.find(Pessoa.class, 1);
+		Pessoa p = manager.find(Pessoa.class, 1);
 		
 		manager.getTransaction().begin();
-		manager.remove(p1);
+		manager.remove(p);
 		manager.getTransaction().commit();
 		
 		//System.out.println(p1);
