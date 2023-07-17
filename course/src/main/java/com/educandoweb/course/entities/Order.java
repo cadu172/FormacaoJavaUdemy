@@ -31,15 +31,14 @@ public class Order implements Serializable  {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")	
 	private Instant moment;
 	
+	private int orderStatus;
+	
 	@ManyToOne
 	@JoinColumn(name="client_id")
 	private User client;
 	
-	@OneToMany
-	@JoinColumn(name="id.order")
+	@OneToMany(mappedBy = "id.order")	
 	private Set<OrderItem> items = new HashSet<>();
-	
-	private int orderStatus;
 	
 	public Order() {		
 	}
@@ -69,6 +68,15 @@ public class Order implements Serializable  {
 	public Instant getMoment() {
 		return moment;
 	}
+	
+	public User getClient() {
+		return client;
+	}
+	
+	
+	public Set<OrderItem> getItems() {
+		return items;
+	}	
 
 	@Override
 	public int hashCode() {
@@ -92,13 +100,5 @@ public class Order implements Serializable  {
 		return "Order [id=" + id + ", moment=" + moment + ", client=" + client + "]";
 	}
 
-	public User getClient() {
-		return client;
-	}
-	
-	
-	public Set<OrderItem> getItems() {
-		return items;
-	}
 	
 }
