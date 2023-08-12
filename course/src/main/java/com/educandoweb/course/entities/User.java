@@ -65,6 +65,20 @@ public class User implements java.io.Serializable {
 	public String getPassword() {
 		return password;
 	}
+	
+	
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	@Override
 	public int hashCode() {
