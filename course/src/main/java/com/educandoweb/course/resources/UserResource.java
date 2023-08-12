@@ -47,6 +47,10 @@ public class UserResource {
 		
 		user = service.insert(user);
 		
+		/* gera a URL que será retornada pela API apos o processo de POST, 
+		 * permitindo que o front-end possa usar o link para uma consulta posterior
+		 * Obs: A URL é retornada no HEADER da resposta no item "Location"
+		 */
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
 		
 		return ResponseEntity.created(location).body(user);

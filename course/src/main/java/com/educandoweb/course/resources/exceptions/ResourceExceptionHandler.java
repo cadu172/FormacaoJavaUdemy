@@ -7,13 +7,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.educandoweb.course.services.exceptions.CarlosException;
+import com.educandoweb.course.services.exceptions.DatabaseException;
+import com.educandoweb.course.services.exceptions.GenericException;
 import com.educandoweb.course.services.exceptions.ResourceNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
+	
+	@ExceptionHandler(GenericException.class)
+	public ResponseEntity<StandardError> genericException(GenericException e, HttpServletRequest request) {
+		String error = "Services.Exceptions.GenericException";
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(status).body(err);
+	}	
 
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
@@ -23,12 +32,13 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(status).body(err);
 	}
 	
-	@ExceptionHandler(CarlosException.class)
-	public ResponseEntity<StandardError> carlaoErro(CarlosException e, HttpServletRequest request) {
-		String error = "Exception Carlos";
+	@ExceptionHandler(DatabaseException.class)
+	public ResponseEntity<StandardError> databaseException(DatabaseException e, HttpServletRequest request) {
+		String error = "Bussiness Database Exception";
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}	
+	
 	
 }
