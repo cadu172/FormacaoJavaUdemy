@@ -13,6 +13,8 @@ import com.educandoweb.course.services.exceptions.DatabaseException;
 import com.educandoweb.course.services.exceptions.GenericException;
 import com.educandoweb.course.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class UserService {
 
@@ -30,8 +32,9 @@ public class UserService {
 		
 		Optional<User> obj = userRepository.findById(id);
 		
+		/* orElseThrow: dispara uma exceção caso o objeto esteja vazio
+		 * */
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
-		//return obj.orElseThrow(() -> new CarlosException("Recurso Não Localizado"));
 		
 	}
 	
@@ -47,7 +50,8 @@ public class UserService {
 			userRepository.deleteById(id);
 		}
 		catch ( DataIntegrityViolationException e ) {
-			throw new DatabaseException(e.getMessage());
+			//throw new DatabaseException(e.getMessage());
+			throw new DatabaseException("Impossible to delete id " + id + ", users table has child tables with information dependency");
 		}
 		catch ( RuntimeException e) {
 			throw new GenericException(e.getMessage());
@@ -57,13 +61,26 @@ public class UserService {
 	
 	public User update(Long id, User user) {
 		
-		User aux = userRepository.getReferenceById(id);	
+		try {		
+			
+			User aux = userRepository.getReferenceById(id);	
+			
+			aux.setEmail(user.getEmail());
+			aux.setName(user.getName());
+			aux.setPhone(user.getPhone());
+			
+			return userRepository.save(aux);
 		
-		aux.setEmail(user.getEmail());
-		aux.setName(user.getName());
-		aux.setPhone(user.getPhone());
+		}
+		catch ( EntityNotFoundException e ) {			
+			//throw new ResourceNotFoundException(id);
+			throw new DatabaseException("Impossible update, ID " + id + " no found in database");
+		}
 		
-		return userRepository.save(aux);
+		catch ( RuntimeException e ) {
+			e.printStackTrace();
+			throw new GenericException(e.getMessage());			
+		}
 	
 		
 	}
