@@ -1,27 +1,21 @@
-package com.cadu172.workshopmongo.domain;
+package com.cadu172.workshopmongo.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.cadu172.workshopmongo.domain.User;
 
-@Document(collection = "user")
-public class User implements Serializable {
+public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
+	
 	private String id;
 	private String name;
 	private String email;
 	
-	public User() {}
-
-	public User(String id, String name, String email) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
+	public UserDTO(User user) {
+		this.id = user.getEmail();
+		this.name = user.getName();
+		this.email = user.getEmail();
 	}
 
 	public String getId() {
@@ -61,8 +55,10 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		UserDTO other = (UserDTO) obj;
 		return Objects.equals(id, other.id);
 	}
 	
+	
+
 }
