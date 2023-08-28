@@ -24,7 +24,7 @@ public class DatabaseSeed implements CommandLineRunner {
 		
 		User user1 = new User(null, "Maria Brown", "maria@gmail.com");		
 		User user2 = new User(null, "Alex Green", "alex@gmail.com");
-		User user3 = new User(null, "carlos", "cadu172@gmail.com");
+		User user3 = new User(null, "carlos", "cadu172@gmail.com");		
 		
 		userRepository.saveAll(Arrays.asList(user1, user2, user3));
 		
