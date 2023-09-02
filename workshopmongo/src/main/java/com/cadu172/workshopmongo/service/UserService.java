@@ -47,4 +47,25 @@ public class UserService {
 		userRepository.deleteById(id);		
 	}
 	
+	public User update(User user) {
+		
+		//User userdb = this.findById(user.getId());		
+		// atualizar o id do objeto pa
+		//user.setId(userdb.getId());
+		
+		if ( user.getId()==null ) {
+			throw new ResourceNotFoundException("Operacao update obrigatorio informar o id");
+		}
+		else if ( user.getEmail() == null  ) {
+			throw new ResourceNotFoundException("Operacao update obrigatorio informar o campo email");
+		}
+		else if ( user.getName() == null  ) {
+			throw new ResourceNotFoundException("Operacao update obrigatorio informar o campo name");
+		}
+		
+		
+		return userRepository.save(user);
+	
+	}
+	
 }
