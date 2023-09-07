@@ -1,5 +1,6 @@
 package com.cadu172.workshopmongo.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,17 @@ public class PostService {
 		
 		//List<Post> listPost = postRepository.findByTitleContainingIgnoreCase(texto);
 		List<Post> listPost = postRepository.findByTitle(texto);
+		
+		return listPost;
+		
+	}
+	
+	public List<Post> fullSearch(String texto, Date dataInicial, Date dataFinal) {
+		
+		//dataFinal = new Date(dataFinal.getTime()+24*60*60*1000);
+		
+		//List<Post> listPost = postRepository.findByTitleContainingIgnoreCase(texto);
+		List<Post> listPost = postRepository.fullSearch(texto, dataInicial, dataFinal);
 		
 		return listPost;
 		

@@ -1,5 +1,6 @@
 package com.cadu172.workshopmongo.resource;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,22 @@ public class PostResource {
 		return ResponseEntity.ok().body(list);		
 				
 	}	
+	
+	@GetMapping(value="/fullSearch")	
+	public ResponseEntity<List<Post>> fullSearch(
+				@RequestParam(value="textSearch", defaultValue="") String texto,
+				@RequestParam(value="dataInicial", defaultValue="") String dataInicial,
+				@RequestParam(value="dataFinal", defaultValue="") String dataFinal ) {
+		
+		texto = URL.decodeParam(texto);
+		
+		Date dataIni = URL.converterData(dataInicial, new Date(0L));
+		Date dataFin = URL.converterData(dataFinal, new Date());
+		
+		List<Post> list = postService.fullSearch(texto, dataIni, dataFin);
+		
+		return ResponseEntity.ok().body(list);		
+				
+	}
 	
 }
