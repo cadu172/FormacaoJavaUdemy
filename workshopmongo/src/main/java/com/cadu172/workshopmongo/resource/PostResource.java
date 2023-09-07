@@ -1,13 +1,17 @@
 package com.cadu172.workshopmongo.resource;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cadu172.workshopmongo.domain.Post;
+import com.cadu172.workshopmongo.resource.util.URL;
 import com.cadu172.workshopmongo.service.PostService;
 
 @RestController
@@ -25,5 +29,16 @@ public class PostResource {
 		return ResponseEntity.ok().body(post);		
 				
 	}
+	
+	@GetMapping(value="/findByTitle")	
+	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value="titleString", defaultValue="") String texto) {
+		
+		texto = URL.decodeParam(texto);
+		
+		List<Post> list = postService.findByTitle(texto);
+		
+		return ResponseEntity.ok().body(list);		
+				
+	}	
 	
 }

@@ -16,6 +16,15 @@ public class PostService {
 	@Autowired
 	private PostRepository postRepository;
 	
+	
+	public List<Post> findByTitle(String texto) {
+		
+		List<Post> listPost = postRepository.findByTitleContainingIgnoreCase(texto);
+		
+		return listPost;
+		
+	}
+	
 	public List<Post> findAll() {
 		
 		List<Post> listPost = postRepository.findAll();
