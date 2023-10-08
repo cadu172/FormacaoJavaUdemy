@@ -12,12 +12,13 @@ public class Main extends Application {
 	
 	private static Scene mainScene;
 
+	@SuppressWarnings("exports")
 	public static Scene getMainScene() {
 		return mainScene;
 	}
 
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(@SuppressWarnings("exports") Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainView.fxml"));
 			ScrollPane scrollPane = loader.load();
