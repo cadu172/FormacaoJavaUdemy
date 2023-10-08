@@ -8,5 +8,8 @@ module workshop_javafx_jdbc {
 	exports model.entities;	
 	opens model.entities;
 	
+	exports model.services;
+	opens model.services;
+	
 	opens application to javafx.graphics, javafx.fxml;
 }
