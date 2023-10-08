@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+=======
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+>>>>>>> 6adfd1f2f29ee11e4f9993511b8901ff9e353654
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX_SDK">
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX_MacOS">
+>>>>>>> 6adfd1f2f29ee11e4f9993511b8901ff9e353654
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="src" path="src">
+=======
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/MySQL Connector">
+>>>>>>> 6adfd1f2f29ee11e4f9993511b8901ff9e353654
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+=======
+	<classpathentry kind="src" path="src"/>
+>>>>>>> 6adfd1f2f29ee11e4f9993511b8901ff9e353654
 	<classpathentry kind="output" path="bin"/>
 </classpath>
