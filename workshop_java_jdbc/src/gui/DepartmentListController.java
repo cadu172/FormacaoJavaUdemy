@@ -44,7 +44,7 @@ public class DepartmentListController implements Initializable {
 	@FXML
 	public void BtnNew_OnAction(@SuppressWarnings("exports") ActionEvent event) {
 		
-		Department newDepartment = new Department(1, "teste");
+		Department newDepartment = new Department();
 		
 		Stage parentStage = Utils.getCurrentStage(event);		
 		createDialogForm(newDepartment, "/gui/DepartmentForm.fxml", parentStage);
@@ -92,6 +92,7 @@ public class DepartmentListController implements Initializable {
 			DepartmentFormController controller = loader.getController();
 			
 			controller.setEntity(obj);
+			controller.setService(new DepartmentService());
 			controller.updateFormData();
 			
 			Stage modalStageWindow = new Stage();
