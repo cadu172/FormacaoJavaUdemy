@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.entities.Department;
+import model.exceptions.ValidationException;
 import model.services.DepartmentService;
 
 public class DepartmentFormController implements Initializable {
@@ -79,10 +80,17 @@ public class DepartmentFormController implements Initializable {
 	
 	private Department getFormData() {
 		
+		ValidationException errors = new ValidationException("");
+		
 		Department obj = new Department();
 		
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
 		obj.setName(txtName.getText());
+		
+		if (  obj.getName() == "" || obj.getName() == null ) {			
+			errors.addError("name", "field name was null");
+			*****
+		} 
 		
 		return obj;
 	}	
