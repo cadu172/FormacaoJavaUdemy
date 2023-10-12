@@ -9,6 +9,7 @@ import java.util.List;
 
 import db.DB;
 import db.DbException;
+import db.DbIntegrityException;
 import model.dao.interfaces.InterfaceDepartmentDAO;
 import model.entities.Department;
 
@@ -92,7 +93,7 @@ public class DepartmentDAOJDBC implements InterfaceDepartmentDAO {
 			
 		}
 		catch(SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DbIntegrityException(e.getMessage());
 		}
 		finally {
 			DB.closeStatement(st);
