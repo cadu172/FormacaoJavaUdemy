@@ -3,6 +3,7 @@ package gui;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import db.DbException;
@@ -51,21 +52,24 @@ public class DepartmentFormController implements Initializable {
 			throw new IllegalStateException("service was null");
 		}
 		
-		this.entity = this.getFormData();
-		
-		try {
+		try {		
+			
+			this.entity = this.getFormData();
 			
 			service.saveOrUpdate(this.entity);
 			
-			// notificar listeners
 			this.notifyListeners();
 			
 			Utils.getCurrentStage(event).close();
-		
+
+		}
+		catch( ValidationException err ) {
+			setErrorMessage(err.getErros());
 		}
 		catch (DbException e) {
 			Alerts.showAlert("Error saving object", null, e.getMessage(), AlertType.ERROR);			
 		}
+		
 	}	
 
 	@FXML
@@ -88,9 +92,12 @@ public class DepartmentFormController implements Initializable {
 		obj.setName(txtName.getText());
 		
 		if (  obj.getName() == "" || obj.getName() == null ) {			
-			errors.addError("name", "field name was null");
-			*****
+			errors.addError("name", "field name was null");			
 		} 
+		
+		if ( errors.getErros().size() > 0 ) {
+			throw errors;
+		}
 		
 		return obj;
 	}	
@@ -124,6 +131,12 @@ public class DepartmentFormController implements Initializable {
 		for ( InterfaceDataChangeListener item : listeners ) {
 			item.onDataChange();
 		}
+	}
+	
+	private void setErrorMessage(Map<String, String> errors) {		
+		if ( errors.containsKey("name") ) {
+			labelErrorMessage.setText(errors.get("name"));
+		}		
 	}
 	
 }
