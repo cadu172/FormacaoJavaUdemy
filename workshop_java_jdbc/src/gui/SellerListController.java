@@ -1,6 +1,8 @@
 package gui;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -47,6 +49,15 @@ public class SellerListController implements Initializable, InterfaceDataChangeL
 
 	@FXML
 	private TableColumn<Seller, Seller> tableColumnREMOVE;
+	
+	@FXML
+	private TableColumn<Seller, String> tableColumnEmail;
+	
+	@FXML
+	private TableColumn<Seller, Date> tableColumnBirthDate;
+	
+	@FXML
+	private TableColumn<Seller, Double> tableColumnBaseSalary;	
 
 	@FXML
 	public void BtnNew_OnAction(@SuppressWarnings("exports") ActionEvent event) {
@@ -61,6 +72,14 @@ public class SellerListController implements Initializable, InterfaceDataChangeL
 
 		tableColumnID.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		
+		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		
+		tableColumnBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+		this.formatTableColumnDateAuxiliar(tableColumnBirthDate, "dd/MM/yyyy");
+		
+		tableColumnBaseSalary.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
+		Utils.formatTableColumnDouble(tableColumnBaseSalary, 2);
 
 		Stage parentStage = (Stage) Main.getMainScene().getWindow();
 		tableViewDepartament.prefHeightProperty().bind(parentStage.heightProperty());
@@ -180,5 +199,25 @@ public class SellerListController implements Initializable, InterfaceDataChangeL
 
 		}
 	}
+	
+	
+	public <T> void formatTableColumnDateAuxiliar(TableColumn<Seller, Date> tableColumn, String format) {
+		tableColumn.setCellFactory(column -> {
+			TableCell<Seller, Date> cell = new TableCell<Seller, Date>() {
+				private SimpleDateFormat sdf = new SimpleDateFormat(format);
+
+				@Override
+				protected void updateItem(Date item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(sdf.format(item));
+					}
+				}
+			};
+			return cell;
+		});
+	}	
 
 }
