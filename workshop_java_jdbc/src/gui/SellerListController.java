@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,7 +17,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -24,6 +27,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Seller;
 import model.services.SellerService;
@@ -110,7 +115,7 @@ public class SellerListController implements Initializable, InterfaceDataChangeL
 
 	public void createDialogForm(Seller obj, String frxSource, @SuppressWarnings("exports") Stage parentStage) {
 
-		/*try {
+		try {
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(frxSource));
 			Pane pane = loader.load();
@@ -124,7 +129,7 @@ public class SellerListController implements Initializable, InterfaceDataChangeL
 
 			Stage modalStageWindow = new Stage();
 
-			modalStageWindow.setTitle("Enter departmenta Data");
+			modalStageWindow.setTitle("Enter Seller Data");
 			modalStageWindow.setScene(new Scene(pane));
 			modalStageWindow.setResizable(false);
 			modalStageWindow.initOwner(parentStage);
@@ -134,7 +139,7 @@ public class SellerListController implements Initializable, InterfaceDataChangeL
 		} catch (IOException e) {
 			Alerts.showAlert("IOException Error", "Erro ao abrir formulario (" + frxSource + ")", e.getMessage(),
 					AlertType.ERROR);
-		}*/
+		}
 
 	}
 

@@ -1,8 +1,10 @@
 package gui.util;
 
 
-import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Locale;
 
 import javafx.event.ActionEvent;
@@ -26,6 +28,25 @@ public class Utils {
 			return null;
 		}
 	}
+	
+	public static Date tryParseToDate(String valorEntrada, String formatInput) {
+		SimpleDateFormat formatter = new SimpleDateFormat(formatInput);
+		try {
+			return formatter.parse(valorEntrada);
+		}
+		catch (ParseException e) {
+			throw new IllegalArgumentException(e.getMessage());
+		}
+	}
+	
+	public static Double tryParseToDouble(String valorEntrada, Double defaultValueIfException) {		
+		try {
+			return Double.parseDouble(valorEntrada);
+		}
+		catch (NumberFormatException e) {
+			return defaultValueIfException;
+		}
+	}	
 	
 	public static <T> void formatTableColumnDate(TableColumn<T, Date> tableColumn, String format) {
 		tableColumn.setCellFactory(column -> {
@@ -62,6 +83,10 @@ public class Utils {
 			};
 			return cell;
 		});
-	}	
+	}
+	
+	public static String formatarData(Date p_Data, String p_Formato){
+		return new SimpleDateFormat(p_Formato).format(p_Data);
+	} 
 
 }
