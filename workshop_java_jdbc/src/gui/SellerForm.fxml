@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="243.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SellerFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="288.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SellerFormController">
    <children>
-      <GridPane AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <GridPane prefHeight="251.0" prefWidth="611.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="20.0">
         <columnConstraints>
-          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="182.0" minWidth="5.0" prefWidth="120.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="369.0" minWidth="10.0" prefWidth="343.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="164.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="182.0" minWidth="5.0" prefWidth="104.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" prefWidth="285.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="232.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -30,14 +30,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="labelErrorMessage" prefHeight="17.0" prefWidth="136.0" textAlignment="JUSTIFY" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="labelErrorName" prefHeight="27.0" textAlignment="JUSTIFY" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
             <Label text="Id " />
             <Label text="Name " GridPane.rowIndex="1" />
-            <TextField fx:id="txtId" editable="false" prefHeight="25.0" prefWidth="156.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtId" editable="false" maxWidth="100.0" prefHeight="25.0" GridPane.columnIndex="1" />
             <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <HBox prefHeight="44.0" prefWidth="334.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
@@ -52,25 +52,30 @@
             <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Birth Date " GridPane.rowIndex="3" />
             <Label text="Base Salary " GridPane.rowIndex="4" />
-            <TextField fx:id="txtBaseSalary" maxWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtBaseSalary" maxWidth="174.0" prefHeight="25.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Department ID " GridPane.rowIndex="5" />
-            <DatePicker fx:id="txtBirthDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="labelErrorEmail" prefHeight="17.0" prefWidth="136.0" textAlignment="JUSTIFY" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <DatePicker fx:id="txtBirthDate" prefHeight="25.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="labelErrorEmail" prefHeight="17.0" textAlignment="JUSTIFY" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="labelErrorBirthDate" prefHeight="17.0" prefWidth="136.0" textAlignment="JUSTIFY" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Label fx:id="labelErrorBirthDate" prefHeight="17.0" textAlignment="JUSTIFY" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="labelErrorBaseSalary" prefHeight="17.0" prefWidth="136.0" textAlignment="JUSTIFY" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Label fx:id="labelErrorBaseSalary" prefHeight="17.0" textAlignment="JUSTIFY" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <ComboBox fx:id="comboBoxDepartment" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBoxDepartment" prefHeight="25.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="labelErrorDepartment" prefHeight="17.0" textAlignment="JUSTIFY" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
          </children>
       </GridPane>
    </children>

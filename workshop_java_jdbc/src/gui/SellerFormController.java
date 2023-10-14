@@ -65,7 +65,7 @@ public class SellerFormController implements Initializable {
 	private Button btCancel;
 	
 	@FXML
-	private Label labelErrorMessage;
+	private Label labelErrorName;
 	
 	@FXML
 	private Label labelErrorEmail;	
@@ -75,6 +75,9 @@ public class SellerFormController implements Initializable {
 	
 	@FXML
 	private Label labelErrorBaseSalary;
+	
+	@FXML
+	private Label labelErrorDepartment;	
 	
 	@FXML
 	private ComboBox<Department> comboBoxDepartment;
@@ -125,28 +128,42 @@ public class SellerFormController implements Initializable {
 		Seller obj = new Seller();
 		
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
-		obj.setName(txtName.getText());
-		obj.setEmail(txtEmail.getText());
-		obj.setBirthDate(Date.from(txtBirthDate.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-		obj.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText(), 0.00));
-		//obj.setDepartment(new Department(Utils.tryParseToInt(txtDepartmentId.getText()), null));
 		
-		if (  obj.getName() == "" || obj.getName() == null ) {			
-			errors.addError("name", "field name was null");			
-		} 
+		if ( txtName.getText() == null || txtName.getText().trim() == "" ) {
+			errors.addError("name", "Name can´t be empty");		
+		}
+		else {
+			obj.setName(txtName.getText());
+		}
 		
-		if (  obj.getEmail() == "" || obj.getEmail() == null ) {			
-			errors.addError("email", "field email was null");			
-		} 		
+		if ( txtEmail.getText() == null || txtEmail.getText().trim() == "" ) {
+			errors.addError("email", "E-Mail can´t be empty");		
+		}
+		else {
+			obj.setEmail(txtEmail.getText());
+		}
 		
-		if (  obj.getBirthDate() == null ) {			
-			errors.addError("birthdate", "field birthdate was null");			
-		} 		
+		if ( txtBirthDate.getValue() == null  ) {
+			errors.addError("birthdate", "Birth Date can´t be empty");
+		}
+		else {
+			obj.setBirthDate(Date.from(txtBirthDate.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));	
+		}
+		
+		if ( Utils.tryParseToDouble(txtBaseSalary.getText(), null) == null ) {
+			errors.addError("basesalary", "Base Salary can´t be empty");	
+		}
+		else {
+			obj.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText(), 0.00));
+		}
+		
+		if ( comboBoxDepartment.getValue() == null ) {
+			errors.addError("department", "Select a Department");
+		}
+		else {
+			obj.setDepartment(comboBoxDepartment.getValue());
+		}
 
-		if (  obj.getBaseSalary() == null ) {			
-			errors.addError("basesalary", "field basesalary was null");			
-		} 		
-		
 		if ( errors.getErros().size() > 0 ) {
 			throw errors;
 		}
@@ -209,22 +226,13 @@ public class SellerFormController implements Initializable {
 	}
 	
 	private void setErrorMessage(Map<String, String> errors) {		
-		if ( errors.containsKey("name") ) {
-			labelErrorMessage.setText(errors.get("name"));
-		}
 		
-		if ( errors.containsKey("email") ) {
-			labelErrorEmail.setText(errors.get("email"));
-		}	
-		
-		if ( errors.containsKey("birthdate") ) {
-			labelErrorBirthDate.setText(errors.get("birthdate"));
-		}
-		
-		if ( errors.containsKey("basesalary") ) {
-			labelErrorBaseSalary.setText(errors.get("basesalary"));
-		}		
-		
+		labelErrorName.setText(errors.containsKey("name") ? errors.get("name") : null );
+		labelErrorEmail.setText(errors.containsKey("email") ? errors.get("email") : null );
+		labelErrorBirthDate.setText(errors.containsKey("birthdate") ? errors.get("birthdate") : null );
+		labelErrorBaseSalary.setText(errors.containsKey("basesalary") ? errors.get("basesalary") : null );
+		labelErrorDepartment.setText(errors.containsKey("department") ? errors.get("department") : null );
+	
 	}
 	
 	public void loadAssociatedObjects() {
