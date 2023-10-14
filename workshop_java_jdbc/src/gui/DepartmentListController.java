@@ -121,6 +121,7 @@ public class DepartmentListController implements Initializable, InterfaceDataCha
 			modalStageWindow.showAndWait();
 		
 		} catch(IOException e) {
+			e.printStackTrace();
 			Alerts.showAlert("IOException Error", "Erro ao abrir formulario (" + frxSource + ")", e.getMessage(), AlertType.ERROR);
 		}
 			

@@ -31,6 +31,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Seller;
+import model.services.DepartmentService;
 import model.services.SellerService;
 
 public class SellerListController implements Initializable, InterfaceDataChangeListener {
@@ -123,7 +124,8 @@ public class SellerListController implements Initializable, InterfaceDataChangeL
 			SellerFormController controller = loader.getController();
 
 			controller.setEntity(obj);
-			controller.setService(new SellerService());
+			controller.setServices(new SellerService(), new DepartmentService());
+			controller.loadAssociatedObjects();
 			controller.updateFormData();
 			controller.subscribeDataChangeListener(this);
 
@@ -137,6 +139,7 @@ public class SellerListController implements Initializable, InterfaceDataChangeL
 			modalStageWindow.showAndWait();
 
 		} catch (IOException e) {
+			e.printStackTrace();
 			Alerts.showAlert("IOException Error", "Erro ao abrir formulario (" + frxSource + ")", e.getMessage(),
 					AlertType.ERROR);
 		}
