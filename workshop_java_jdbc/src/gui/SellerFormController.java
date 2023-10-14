@@ -1,8 +1,12 @@
 package gui;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -116,7 +120,7 @@ public class SellerFormController implements Initializable {
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
 		obj.setName(txtName.getText());
 		obj.setEmail(txtEmail.getText());
-		obj.setBirthDate(Utils.tryParseToDate(txtBirthDate.getText(), "dd/MM/yyyy"));
+		obj.setBirthDate(Date.from(txtBirthDate.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 		obj.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText(), 0.00));
 		obj.setDepartment(new Department(Utils.tryParseToInt(txtDepartmentId.getText()), null));
 		
@@ -147,6 +151,9 @@ public class SellerFormController implements Initializable {
 	private void initializeNodes() {
 		Constraints.setTextFieldInteger(txtId);
 		Constraints.setTextFieldMaxLength(txtName, 200);
+		Constraints.setTextFieldDouble(txtBaseSalary);
+		Constraints.setTextFieldMaxLength(txtEmail, 200);
+		Utils.formatDatePicker(txtBirthDate, "dd/MM/yyyy");
 	}
 
 	public void setEntity(Seller entity) {
@@ -163,11 +170,17 @@ public class SellerFormController implements Initializable {
 		}
 		txtId.setText(String.valueOf(entity.getId()));
 		txtName.setText(entity.getName());
-		txtEmail.setText(entity.getEmail());
-		//txtBirthDate.setText(Utils.formatarData(entity.getBirthDate(), "dd/MM/yyyy"));
-		txtBirthDate.setDa ***
-		txtBaseSalary.setText(entity.getBaseSalary().toString());
-		txtDepartmentId.setText(entity.getDepartment().getId().toString());
+		txtEmail.setText(entity.getEmail());		
+		txtBaseSalary.setText(String.format(Locale.US, "%.2f", entity.getBaseSalary()));
+		
+		if ( entity.getDepartment() != null ) {
+			txtDepartmentId.setText(entity.getDepartment().getId().toString());
+		}
+		
+		if ( ! ( entity.getBirthDate() == null ) ) {
+			txtBirthDate.setValue(entity.getBirthDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+		}
+		
 	}
 	
 	public void subscribeDataChangeListener(@SuppressWarnings("exports") InterfaceDataChangeListener observer) {

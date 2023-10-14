@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -159,7 +160,7 @@ public class SellerDAOJDBC implements InterfaceSellerDAO {
 		seller.setId(qyrSeller.getInt("Id"));
 		seller.setName(qyrSeller.getString("Name"));
 		seller.setEmail(qyrSeller.getString("Email"));
-		seller.setBirthDate(qyrSeller.getDate("BirthDate"));
+		seller.setBirthDate(new Date(qyrSeller.getTimestamp("BirthDate").getTime()));
 		seller.setBaseSalary(qyrSeller.getDouble("BaseSalary"));
 		seller.setDepartment(department);
 		
